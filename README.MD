@@ -2,7 +2,7 @@
 > Trench é uma rede social
 
 ### Funcionalidades
-> Dentro da pasta docs está as funcionalidades e a documentação de cada modulo, [aqui](/docs/READ.MD)
+> Dentro da pasta docs está as funcionalidades e a documentação de cada modulo, [aqui](/docs/README.MD)
 
 ### Arquitetura do Sistema
 
