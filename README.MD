@@ -21,6 +21,8 @@
     * Kubernetes
   * Identity
     * Keycloak
+  * API Gateway/Proxy reverse
+    * NGINX
 
 ### Como Executar o Projeto
 ```sh
