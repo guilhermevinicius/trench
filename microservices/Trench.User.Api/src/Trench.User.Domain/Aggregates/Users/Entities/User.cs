@@ -14,23 +14,22 @@ public class User : Entity
     public string? Bio { get; private set; }
     public bool IsActive { get; private set; } = true;
 
-    private User(string firstName, string lastName, string email, string username, string identityId, DateTime birthdate)
+    private User(string firstName, string lastName, string email, string username, DateTime birthdate)
     {
         FirstName = firstName;
         LastName = lastName;
         Email = email;
         Username = username;
-        IdentityId = identityId;
         Birthdate = birthdate;
     }
 
     private User()
     { }
 
-    public static User Create(string firstName, string lastName, string email, string username, string identityId,
+    public static User Create(string firstName, string lastName, string email, string username,
         DateTime birthday)
     {
-        return new User(firstName, lastName, email, username, identityId, birthday);
+        return new User(firstName, lastName, email, username, birthday);
     }
 
     public void UpdateBio(string bio)
@@ -43,6 +42,11 @@ public class User : Entity
         PictureUrl = pictureUrl;
     }
 
+    public void SetIdentityId(string identityId)
+    {
+        IdentityId = identityId;
+    }
+    
     public void Activate()
     {
         IsActive = true;

@@ -1,4 +1,3 @@
-using Trench.User.Domain.SeedWorks;
 using Trench.User.UnitTests.Config;
 using Entity = Trench.User.Domain.Aggregates.Users.Entities;
 
@@ -14,11 +13,10 @@ public class UserTest : BaseTest
         var lastName = Faker.Name.LastName();
         var email = Faker.Internet.Email();
         var username = Faker.Internet.UserName();
-        var identityId = Faker.Random.Guid().ToString();
         var birthDate = Faker.Date.Past(18);
 
         // Action
-        var user = Entity.User.Create(firstName, lastName, email, username, identityId, birthDate);
+        var user = Entity.User.Create(firstName, lastName, email, username, birthDate);
 
         // Assert
         Assert.Equal(firstName, user.FirstName);
@@ -58,6 +56,21 @@ public class UserTest : BaseTest
     }
 
     [Fact]
+    public void UserTest_Create_SetIdentityId()
+    {
+        // Arrange
+        var user = GetUserScene();
+        var identityId = Faker.Random.Guid().ToString();
+
+        // Action
+        user.SetIdentityId(identityId);
+
+        // Assert
+        Assert.Equal(identityId, user.IdentityId);
+    }
+
+
+    [Fact]
     public void UserTest_Create_Activate()
     {
         // Arrange
@@ -94,7 +107,6 @@ public class UserTest : BaseTest
             Faker.Name.LastName(),
             Faker.Internet.Email(),
             Faker.Internet.UserName(),
-        Faker.Random.Guid().ToString(),
         Faker.Date.Past(18));
     }
 
