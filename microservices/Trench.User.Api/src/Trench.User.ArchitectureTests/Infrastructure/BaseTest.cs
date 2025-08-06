@@ -10,7 +10,7 @@ public abstract class BaseTest
 {
     protected static readonly Assembly ApplicationAssembly = typeof(IBaseCommand).Assembly;
 
-    protected static readonly Assembly DomainAssembly = typeof(Entity<>).Assembly;
+    protected static readonly Assembly DomainAssembly = typeof(Entity).Assembly;
 
     protected static readonly Assembly PersistenceAssembly = typeof(PostgresDbContext).Assembly;
 

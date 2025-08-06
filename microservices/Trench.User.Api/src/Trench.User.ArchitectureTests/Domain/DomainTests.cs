@@ -13,7 +13,7 @@ public class DomainTests : BaseTest
     {
         IEnumerable<Type> entityTypes = Types.InAssembly(DomainAssembly)
             .That()
-            .Inherit(typeof(Entity<>))
+            .Inherit(typeof(Entity))
             .GetTypes();
 
         var failingTypes = new List<Type>();
