@@ -5,6 +5,7 @@
 > Dentro da pasta docs está as funcionalidades e a documentação de cada modulo, [aqui](/docs/README.MD)
 
 ### Arquitetura do Sistema
+![](/docs/images/system_design.png)
 
 ### Tecnologias Utilizadas
   * Framework
@@ -14,6 +15,7 @@
   * Database/Cache
     * Redis
     * Postgres
+    * Cassandra
   * Observabilidades
     * Grafana stack
   * Infrastructure
