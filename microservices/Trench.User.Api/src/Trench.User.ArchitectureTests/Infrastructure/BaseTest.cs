@@ -1,17 +1,18 @@
-﻿using Bookify.Application.Abstractions.Messaging;
-using Bookify.Domain.Abstractions;
-using Bookify.Infrastructure;
-using System.Reflection;
+﻿using System.Reflection;
+using Trench.User.Application.Contracts.Messaging;
+using Trench.User.Domain.SeedWorks;
+using Trench.User.Persistence.Postgres;
+using Trench.User.Storage.Configurations;
 
-namespace Bookify.ArchitectureTests.Infrastructure;
+namespace Trench.User.ArchitectureTests.Infrastructure;
 
 public abstract class BaseTest
 {
     protected static readonly Assembly ApplicationAssembly = typeof(IBaseCommand).Assembly;
 
-    protected static readonly Assembly DomainAssembly = typeof(Entity).Assembly;
+    protected static readonly Assembly DomainAssembly = typeof(Entity<>).Assembly;
 
-    protected static readonly Assembly InfrastructureAssembly = typeof(ApplicationDbContext).Assembly;
+    protected static readonly Assembly PersistenceAssembly = typeof(PostgresDbContext).Assembly;
 
-    protected static readonly Assembly PresentationAssembly = typeof(Program).Assembly;
+    protected static readonly Assembly StorageAssembly = typeof(StorageDependencyInjection).Assembly;
 }

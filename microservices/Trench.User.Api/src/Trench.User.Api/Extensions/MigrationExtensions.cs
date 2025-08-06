@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using Pulse.Product.Persistence.Postgres;
+using Trench.User.Persistence.Postgres;
 
-namespace Pulse.Product.Api.Extensions;
+namespace Trench.User.Api.Extensions;
 
 public static class MigrationExtensions
 {

@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Pulse.Product.Api.Configurations.ExceptionHandler;
+namespace Trench.User.Api.Configurations.ExceptionHandler;
 
 public class CustomExceptionHandler(
     ILogger<CustomExceptionHandler> logger)
@@ -30,7 +30,7 @@ public class CustomExceptionHandler(
             // Instance = httpContext.Request.Path
         };
 
-        httpContext.Response.StatusCode = problemDetails.Status.Value;
+        httpContext.Response.StatusCode = problemDetails.Status!.Value;
         await httpContext.Response.WriteAsJsonAsync(problemDetails, cancellationToken);
         return true;
     }

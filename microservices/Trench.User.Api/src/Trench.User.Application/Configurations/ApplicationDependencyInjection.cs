@@ -1,9 +1,9 @@
 using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
-using Pulse.Product.CrossCutting.Behaviors;
-using Pulse.Product.CrossCutting.GlobalException;
+using Trench.User.CrossCutting.Behaviors;
+using Trench.User.CrossCutting.GlobalException;
 
-namespace Pulse.Product.Application.Configurations;
+namespace Trench.User.Application.Configurations;
 
 public static class ApplicationDependencyInjection
 {

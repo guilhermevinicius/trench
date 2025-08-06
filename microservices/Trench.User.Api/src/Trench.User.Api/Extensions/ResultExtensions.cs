@@ -1,8 +1,8 @@
 using System.Net;
 using FluentResults;
-using Pulse.Product.Api.Dtos;
+using Trench.User.Api.Dtos;
 
-namespace Pulse.Product.Api.Extensions;
+namespace Trench.User.Api.Extensions;
 
 public static class ResultExtensions
 {

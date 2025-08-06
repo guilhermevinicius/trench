@@ -1,6 +1,3 @@
 namespace Trench.User.Domain.SeedWorks;
 
-public class AggregateRoot
-{
-    
-}
+public abstract class AggregateRoot : EntityId32;

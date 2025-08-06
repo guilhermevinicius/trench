@@ -1,7 +1,7 @@
 using FluentResults;
 using MediatR;
 
-namespace Pulse.Product.CrossCutting.GlobalException;
+namespace Trench.User.CrossCutting.GlobalException;
 
 public class GlobalExceptionPipelineBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse>
     where TRequest : IRequest<TResponse>

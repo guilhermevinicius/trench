@@ -3,7 +3,7 @@ using MediatR;
 using Microsoft.Extensions.Logging;
 using Serilog.Context;
 
-namespace Pulse.Product.CrossCutting.Behaviors;
+namespace Trench.User.CrossCutting.Behaviors;
 
 public sealed class LoggingBehavior<TRequest, TResponse>(
     ILogger<LoggingBehavior<TRequest, TResponse>> logger)
@@ -22,7 +22,7 @@ public sealed class LoggingBehavior<TRequest, TResponse>(
         {
             logger.LogInformation("Executing request {RequestName}", requestName);
 
-            var result = await next();
+            var result = await next(cancellationToken);
 
             if (result.IsSuccess)
             {

@@ -1,20 +1,22 @@
-using Pulse.Product.Api.Configurations.Endpoints;
-using Pulse.Product.Api.Configurations.ExceptionHandler;
-using Pulse.Product.Api.Configurations.HealthCheck;
-using Pulse.Product.Api.Configurations.Observability;
-using Pulse.Product.Api.Extensions;
 using Scalar.AspNetCore;
 using Serilog;
+using Trench.User.Api.Configurations.Endpoints;
+using Trench.User.Api.Configurations.ExceptionHandler;
+using Trench.User.Api.Configurations.HealthCheck;
+using Trench.User.Api.Configurations.Observability;
+using Trench.User.Api.Extensions;
 
-namespace Pulse.Product.Api.Configurations;
+namespace Trench.User.Api.Configurations;
 
 internal static class ApiDependencyInjection
 {
     internal static WebApplication UseApi(this WebApplication app)
     {
-        app.MapOpenApi();
-
-        app.MapScalarApiReference();
+        if (app.Environment.IsDevelopment())
+        {
+            app.MapOpenApi();
+            app.MapScalarApiReference();
+        }
 
         app.UseHealthCheckConfiguration();
 
@@ -27,7 +29,7 @@ internal static class ApiDependencyInjection
 
         app.UseSerilogRequestLogging();
         
-        app.ApplyMigrations();
+        // app.ApplyMigrations();
 
         app.MapEndpoints();
 

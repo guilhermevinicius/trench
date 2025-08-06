@@ -1,39 +1,17 @@
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
-using Microsoft.Extensions.Diagnostics.HealthChecks;
-using MongoDB.Driver;
-using Pulse.Product.Persistence.Configurations;
 
-namespace Pulse.Product.Api.Configurations.HealthCheck;
+namespace Trench.User.Api.Configurations.HealthCheck;
 
 internal static class HealthCheckConfig
 {
     internal static void AddHealthCheckConfiguration(this IServiceCollection services,
         IConfiguration configuration)
     {
-        var mongoConnectionString = configuration
-            .GetSection(nameof(MongoDbSettings))
-            .Get<MongoDbSettings>()
-            .GetConnectionString();
-        
-        var settings = MongoClientSettings.FromConnectionString(mongoConnectionString);
-        settings.SslSettings = new SslSettings
-        {
-            EnabledSslProtocols = System.Security.Authentication.SslProtocols.None
-        };
-
-        services.AddSingleton<IMongoClient>(_ => 
-            new MongoClient(settings));
-
         services.AddHealthChecks()
-            .AddNpgSql(configuration.GetConnectionString("Postgres"), name: "Postgres")
-            .AddMongoDb(
-                clientFactory: sp => sp.GetRequiredService<IMongoClient>(),
-                name: "MongoDB",
-                failureStatus: HealthStatus.Unhealthy);
+            .AddNpgSql(configuration.GetConnectionString("Postgres")!, name: "Postgres");
 
-        services
-            .AddHealthChecksUI(setup => { setup.SetEvaluationTimeInSeconds(50); })
+        services.AddHealthChecksUI(setup => { setup.SetEvaluationTimeInSeconds(50); })
             .AddInMemoryStorage();
     }
 

@@ -1,4 +1,4 @@
-namespace Pulse.Product.Api.Endpoints;
+namespace Trench.User.Api.Endpoints;
 
 public interface IEndpoint
 {

@@ -5,7 +5,7 @@ using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 using Serilog;
 
-namespace Pulse.Product.Api.Configurations.Observability;
+namespace Trench.User.Api.Configurations.Observability;
 
 internal static class OpenTelemetryConfig
 {

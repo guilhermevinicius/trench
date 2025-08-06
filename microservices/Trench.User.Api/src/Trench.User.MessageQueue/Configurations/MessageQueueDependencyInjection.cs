@@ -3,7 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 
-namespace Pulse.Product.MessageQueue.Configurations;
+namespace Trench.User.MessageQueue.Configurations;
 
 public static class MessageQueueDependencyInjection
 {

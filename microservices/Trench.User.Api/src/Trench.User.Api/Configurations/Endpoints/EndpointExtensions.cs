@@ -1,8 +1,8 @@
 using System.Reflection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using Pulse.Product.Api.Endpoints;
+using Trench.User.Api.Endpoints;
 
-namespace Pulse.Product.Api.Configurations.Endpoints;
+namespace Trench.User.Api.Configurations.Endpoints;
 
 public static class EndpointExtensions
 {

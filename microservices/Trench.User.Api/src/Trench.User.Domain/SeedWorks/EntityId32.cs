@@ -1,6 +1,3 @@
 namespace Trench.User.Domain.SeedWorks;
 
-public class EntityId32
-{
-    
-}
+public abstract class EntityId32 : Entity<int>;

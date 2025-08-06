@@ -1,8 +1,6 @@
-namespace Pulse.Product.Api.Endpoints;
+namespace Trench.User.Api.Endpoints;
 
 public static class Tags
 {
-    public static string Product = "Product";
-    public static string ProductVariant = "ProductVariant";
-    public static string ProductMedia = "ProductMedia";
+    public static string Users = "Users";
 }

@@ -1,4 +1,4 @@
-namespace Pulse.Product.Application.Contracts.Storage;
+namespace Trench.User.Application.Contracts.Storage;
 
 public interface IStorageService
 {

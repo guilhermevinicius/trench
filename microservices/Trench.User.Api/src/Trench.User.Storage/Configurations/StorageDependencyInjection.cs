@@ -2,11 +2,11 @@ using Amazon.Runtime;
 using Amazon.S3;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Pulse.Product.Application.Contracts.Storage;
-using Pulse.Product.Storage.Models;
-using Pulse.Product.Storage.Services;
+using Trench.User.Application.Contracts.Storage;
+using Trench.User.Storage.Models;
+using Trench.User.Storage.Services;
 
-namespace Pulse.Product.Storage.Configurations;
+namespace Trench.User.Storage.Configurations;
 
 public static class StorageDependencyInjection
 {

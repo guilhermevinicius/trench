@@ -1,10 +1,10 @@
 using Amazon.S3;
 using Amazon.S3.Model;
 using Microsoft.Extensions.Options;
-using Pulse.Product.Application.Contracts.Storage;
-using Pulse.Product.Storage.Models;
+using Trench.User.Application.Contracts.Storage;
+using Trench.User.Storage.Models;
 
-namespace Pulse.Product.Storage.Services;
+namespace Trench.User.Storage.Services;
 
 internal sealed class StorageService(
     IAmazonS3 amazonS3,

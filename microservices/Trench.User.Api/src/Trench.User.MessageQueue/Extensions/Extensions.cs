@@ -1,7 +1,7 @@
 using System.Globalization;
 using MassTransit;
 
-namespace Pulse.Product.MessageQueue.Extensions;
+namespace Trench.User.MessageQueue.Extensions;
 
 public static class Extensions
 {
@@ -9,7 +9,7 @@ public static class Extensions
     {
         if (context.Headers.TryGetHeader(cultureValue, out _))
             Thread.CurrentThread.CurrentUICulture =
-                CultureInfo.GetCultureInfo(context.Headers.Get<string>(cultureValue));
+                CultureInfo.GetCultureInfo(context.Headers.Get<string>(cultureValue) ?? string.Empty);
     }
 
     public static void SetCultureManual(this ConsumeContext context, string cultureValue)

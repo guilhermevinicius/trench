@@ -1,10 +1,9 @@
-namespace Pulse.Product.Storage.Models;
+namespace Trench.User.Storage.Models;
 
 public class StorageSettings
 {
-    public string ServerUrl { get; private set; }
-    public string AccessKey { get; init; }
-    public string SecretKey { get; init; }
-    public string BucketName { get; init; }
-    
+    public required string ServerUrl { get; init; }
+    public required string AccessKey { get; init; }
+    public required string SecretKey { get; init; }
+    public required string BucketName { get; init; }
 }

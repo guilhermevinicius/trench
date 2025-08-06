@@ -3,7 +3,7 @@ using FluentValidation;
 using FluentValidation.Results;
 using MediatR;
 
-namespace Pulse.Product.CrossCutting.Behaviors;
+namespace Trench.User.CrossCutting.Behaviors;
 
 public class ValidatorPipelineBehavior<TRequest, TResponse>(
     IEnumerable<IValidator<TRequest>> validators)
@@ -15,7 +15,7 @@ public class ValidatorPipelineBehavior<TRequest, TResponse>(
         CancellationToken cancellationToken)
     {
         if (!validators.Any())
-            return await next();
+            return await next(cancellationToken);
 
         var errorList = validators
             .Select(validator => validator.Validate(request))
@@ -25,7 +25,7 @@ public class ValidatorPipelineBehavior<TRequest, TResponse>(
             .ToList();
 
         if (errorList.Count <= 0)
-            return await next();
+            return await next(cancellationToken);
 
         var result = BuildResponse<TResponse>(errorList);
         return result;

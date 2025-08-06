@@ -1,7 +1,7 @@
 using FluentResults;
 using MediatR;
 
-namespace Pulse.Product.Application.Contracts.Messaging;
+namespace Trench.User.Application.Contracts.Messaging;
 
 public interface ICommand : IRequest<Result>, IBaseCommand;
 

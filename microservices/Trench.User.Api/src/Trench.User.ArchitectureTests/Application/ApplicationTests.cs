@@ -1,17 +1,17 @@
-﻿using Bookify.Application.Abstractions.Messaging;
-using Bookify.ArchitectureTests.Infrastructure;
-using FluentAssertions;
+﻿using FluentAssertions;
 using FluentValidation;
 using NetArchTest.Rules;
+using Trench.User.Application.Contracts.Messaging;
+using Trench.User.ArchitectureTests.Infrastructure;
 
-namespace Bookify.ArchitectureTests.Application;
+namespace Trench.User.ArchitectureTests.Application;
 
 public class ApplicationTests : BaseTest
 {
     [Fact]
     public void CommandHandler_ShouldHave_NameEndingWith_CommandHandler()
     {
-        TestResult result = Types.InAssembly(ApplicationAssembly)
+        var result = Types.InAssembly(ApplicationAssembly)
             .That()
             .ImplementInterface(typeof(ICommandHandler<>))
             .Or()
@@ -26,7 +26,7 @@ public class ApplicationTests : BaseTest
     [Fact]
     public void CommandHandler_Should_NotBePublic()
     {
-        TestResult result = Types.InAssembly(ApplicationAssembly)
+        var result = Types.InAssembly(ApplicationAssembly)
             .That()
             .ImplementInterface(typeof(ICommandHandler<>))
             .Or()
@@ -41,7 +41,7 @@ public class ApplicationTests : BaseTest
     [Fact]
     public void QueryHandler_ShouldHave_NameEndingWith_QueryHandler()
     {
-        TestResult result = Types.InAssembly(ApplicationAssembly)
+        var result = Types.InAssembly(ApplicationAssembly)
             .That()
             .ImplementInterface(typeof(IQueryHandler<,>))
             .Should()
@@ -54,7 +54,7 @@ public class ApplicationTests : BaseTest
     [Fact]
     public void QueryHandler_Should_NotBePublic()
     {
-        TestResult result = Types.InAssembly(ApplicationAssembly)
+        var result = Types.InAssembly(ApplicationAssembly)
             .That()
             .ImplementInterface(typeof(IQueryHandler<,>))
             .Should()
@@ -67,7 +67,7 @@ public class ApplicationTests : BaseTest
     [Fact]
     public void Validator_ShouldHave_NameEndingWith_Validator()
     {
-        TestResult result = Types.InAssembly(ApplicationAssembly)
+        var result = Types.InAssembly(ApplicationAssembly)
             .That()
             .Inherit(typeof(AbstractValidator<>))
             .Should()
@@ -80,7 +80,7 @@ public class ApplicationTests : BaseTest
     [Fact]
     public void Validator_Should_NotBePublic()
     {
-        TestResult result = Types.InAssembly(ApplicationAssembly)
+        var result = Types.InAssembly(ApplicationAssembly)
             .That()
             .Inherit(typeof(AbstractValidator<>))
             .Should()

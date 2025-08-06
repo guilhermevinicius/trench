@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using Pulse.Product.Domain.SeedWorks;
+using Trench.User.Domain.SeedWorks;
 
-namespace Pulse.Product.Persistence.Postgres;
+namespace Trench.User.Persistence.Postgres;
 
 public class PostgresDbContext(
     DbContextOptions<PostgresDbContext> options)

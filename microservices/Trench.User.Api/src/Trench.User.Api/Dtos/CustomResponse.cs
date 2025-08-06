@@ -1,4 +1,4 @@
-namespace Pulse.Product.Api.Dtos;
+namespace Trench.User.Api.Dtos;
 
 public sealed record CustomResponse(
     bool Success,
