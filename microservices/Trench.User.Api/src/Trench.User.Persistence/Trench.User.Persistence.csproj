@@ -4,6 +4,7 @@
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.4" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Trench.User.Application\Trench.User.Application.csproj" />
     <ProjectReference Include="..\Trench.User.Domain\Trench.User.Domain.csproj" />
   </ItemGroup>
 </Project>

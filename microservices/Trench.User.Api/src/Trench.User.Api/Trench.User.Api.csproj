@@ -22,6 +22,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\providers\Trench.User.Provider.Keycloak\Trench.User.Provider.Keycloak.csproj" />
       <ProjectReference Include="..\Trench.User.Application\Trench.User.Application.csproj" />
       <ProjectReference Include="..\Trench.User.MessageQueue\Trench.User.MessageQueue.csproj" />
       <ProjectReference Include="..\Trench.User.Persistence\Trench.User.Persistence.csproj" />

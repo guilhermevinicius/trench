@@ -1,8 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Trench.User.Application.Contracts.Repositories;
 using Trench.User.Domain.SeedWorks;
 using Trench.User.Persistence.Postgres;
+using Trench.User.Persistence.Postgres.Repository;
 
 namespace Trench.User.Persistence.Configurations;
 
@@ -23,5 +25,7 @@ public static class PersistenceDependencyInjection
                 .UseSnakeCaseNamingConvention());
 
         services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<PostgresDbContext>());
+
+        services.AddScoped<IUserRepository, UserRepository>();
     }
 }
