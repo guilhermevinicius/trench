@@ -29,7 +29,7 @@ internal static class ApiDependencyInjection
 
         app.UseSerilogRequestLogging();
         
-        // app.ApplyMigrations();
+        app.ApplyMigrations();
 
         app.MapEndpoints();
 

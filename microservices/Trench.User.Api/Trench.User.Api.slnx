@@ -13,6 +13,9 @@
     <Project Path="src\Trench.User.Persistence\Trench.User.Persistence.csproj" Type="Classic C#" />
     <Project Path="src\Trench.User.Storage\Trench.User.Storage.csproj" Type="Classic C#" />
   </Folder>
+  <Folder Name="/src/Providers/">
+    <Project Path="src\providers\Trench.User.Provider.Keycloak\Trench.User.Provider.Keycloak.csproj" Type="Classic C#" />
+  </Folder>
   <Folder Name="/tests/">
     <Project Path="src\Trench.User.ArchitectureTests\Trench.User.ArchitectureTests.csproj" Type="Classic C#" />
     <Project Path="src\Trench.User.FunctionalTests\Trench.User.FunctionalTests.csproj" Type="Classic C#" />

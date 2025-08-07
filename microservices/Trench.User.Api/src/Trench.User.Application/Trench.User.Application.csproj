@@ -1,5 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <ItemGroup>
     <ProjectReference Include="..\Trench.User.CrossCutting\Trench.User.CrossCutting.csproj" />
+    <ProjectReference Include="..\Trench.User.Domain\Trench.User.Domain.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="Trench.User.UnitTests" />
+  </ItemGroup>
+
 </Project>

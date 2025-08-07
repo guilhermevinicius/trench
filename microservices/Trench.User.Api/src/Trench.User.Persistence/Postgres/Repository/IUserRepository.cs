@@ -1,0 +1,31 @@
+using Microsoft.EntityFrameworkCore;
+using Trench.User.Application.Contracts.Repositories;
+using Entity = Trench.User.Domain.Aggregates.Users.Entities;
+
+namespace Trench.User.Persistence.Postgres.Repository;
+
+internal sealed class UserRepository(
+    PostgresDbContext context) 
+    : IUserRepository
+{
+    private readonly DbSet<Entity.User> _users = context.Set<Entity.User>();
+
+    public async Task<bool> AlreadyUsernameExists(string username, CancellationToken cancellationToken)
+    {
+        return await _users
+            .AsNoTracking()
+            .AnyAsync(x => x.Username == username, cancellationToken);
+    }
+
+    public async Task<bool> AlreadyEmailExists(string email, CancellationToken cancellationToken)
+    {
+        return await _users
+            .AsNoTracking()
+            .AnyAsync(x => x.Email == email, cancellationToken);
+    }
+
+    public async Task InsertAsync(Entity.User user, CancellationToken cancellationToken)
+    {
+        await _users.AddAsync(user, cancellationToken);
+    }
+}
