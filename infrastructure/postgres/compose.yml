@@ -1,0 +1,17 @@
+services:
+  trench-postgres:
+    image: postgres
+    container_name: trench-postgres
+    environment:
+      POSTGRES_USER: trench
+      POSTGRES_PASSWORD: trench@trench
+      POSTGRES_DB: trench
+    volumes:
+      - trench_postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - trench-network
+
+volumes:
+  trench_postgres_data:
