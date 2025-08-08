@@ -1,0 +1,29 @@
+services:
+  trench-user-api:
+    build:
+      dockerfile: ./docker/Dockerfile
+      context: ..
+    container_name: trench-user-api
+    ports:
+      - "7001:80"
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      ConnectionStrings__Postgres: "Host=trench-postgres;Port=5432;Database=trench_user;Username=trench;Password=trench@trench;"
+      QueueSettings__Host: "amqp://trench-rabbitmq"
+      QueueSettings__Username: "guest"
+      QueueSettings__Password: "guest"
+      QueueSettings__Port: "5672"
+      QueueSettings__VirtualHost: "/"
+      StorageSettings__ServerUrl: "https://daef8c044c54451f047018a6bc4f8767.r2.cloudflarestorage.com"
+      StorageSettings__AccessKey: "5cc3180d9916c5d8c2fc8fc7f6b51b81"
+      StorageSettings__SecretKey: "1a9eb89db1e7a5a73a91499fb9938ddac461bd58d61fb6e7b858a7bd8bf9e987"
+      StorageSettings__BucketName: "trench-user-dev"
+      Keycloak__BaseUrl: "http://trench-keycloak:8080"
+      Keycloak__Realm: "trench"
+      Keycloak__Audience: "account"
+      Keycloak__AdminClientId: "trench-admin-client"
+      Keycloak__AdminClientSecret: "qXBOhlrNW6KV5bIfRHGuWPaCWRRspxur"
+      Keycloak__AuthClientId: "trench-user"
+      Keycloak__AuthClientSecret: "G7INeTbBFf6YiCUULJDRrLILrPeoQJPI"
+    networks:
+      - trench-network

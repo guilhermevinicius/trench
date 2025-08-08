@@ -2,6 +2,7 @@ include:
   - ./postgres/compose.yml
   - ./rabbitmq/compose.yml
   - ./keycloak/compose.yml
+  - ../microservices/Trench.User.Api/docker/compose.yml
 
 networks:
   trench-network:

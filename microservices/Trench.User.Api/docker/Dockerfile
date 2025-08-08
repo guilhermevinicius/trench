@@ -13,6 +13,7 @@ COPY ["../src/Trench.User.Domain/Trench.User.Domain.csproj", "src/Trench.User.Do
 COPY ["../src/Trench.User.Persistence/Trench.User.Persistence.csproj", "src/Trench.User.Persistence/"]
 COPY ["../src/Trench.User.MessageQueue/Trench.User.MessageQueue.csproj", "src/Trench.User.MessageQueue/"]
 COPY ["../src/Trench.User.Storage/Trench.User.Storage.csproj", "src/Trench.User.Storage/"]
+COPY ["../src/providers/Trench.User.Provider.Keycloak/Trench.User.Provider.Keycloak.csproj", "src/providers/Trench.User.Provider.Keycloak/"]
 RUN dotnet restore src/Trench.User.Api/Trench.User.Api.csproj
 
 COPY . .
