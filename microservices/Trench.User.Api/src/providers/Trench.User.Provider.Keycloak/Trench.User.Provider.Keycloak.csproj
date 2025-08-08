@@ -11,5 +11,7 @@
 
   <ItemGroup>
     <InternalsVisibleTo Include="Trench.User.IntegrationTests" />
+    <InternalsVisibleTo Include="Trench.User.FunctionalTests" />
   </ItemGroup>
+
 </Project>

@@ -1,0 +1,8 @@
+include:
+  - ./postgres/compose.yml
+  - ./rabbitmq/compose.yml
+  - ./keycloak/compose.yml
+
+networks:
+  trench-network:
+    driver: bridge
