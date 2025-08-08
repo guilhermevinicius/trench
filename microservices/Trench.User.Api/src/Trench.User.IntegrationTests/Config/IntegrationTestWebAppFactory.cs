@@ -11,6 +11,7 @@ using Trench.User.IntegrationTests.Config.Integration;
 using Trench.User.MessageQueue.Configurations;
 using Trench.User.Persistence.Postgres;
 using Trench.User.Provider.Keycloak;
+using Entity = Trench.User.Domain.Aggregates.Users.Entities;
 
 namespace Trench.User.IntegrationTests.Config;
 
@@ -116,7 +117,23 @@ public class IntegrationTestWebAppFactory : WebApplicationFactory<Program>, IAsy
 
         await context.Database.EnsureCreatedAsync();
 
+        await PopulateUser(context);
+
         await context.SaveChangesAsync();
+    }
+
+    private static async Task PopulateUser(PostgresDbContext context)
+    {
+        var user = Entity.User.Create(
+            "Trench",
+            "LTA",
+            "trench@trench.com",
+            "trench",
+            DateTime.UtcNow);
+
+        user.SetIdentityId("identityId");
+
+        await context.AddAsync(user, CancellationToken.None);
     }
 
     #endregion

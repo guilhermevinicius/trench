@@ -20,7 +20,7 @@ public static class ApplicationDependencyInjection
             config.AddOpenBehavior(typeof(GlobalExceptionPipelineBehavior<,>));
         });
 
-        services.AddValidatorsFromAssembly(typeof(ApplicationDependencyInjection).Assembly);
+        services.AddValidatorsFromAssembly(typeof(ApplicationDependencyInjection).Assembly, includeInternalTypes: true);
 
         return services;
     }
