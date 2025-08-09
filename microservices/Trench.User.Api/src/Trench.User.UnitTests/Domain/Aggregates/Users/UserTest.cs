@@ -25,6 +25,7 @@ public class UserTest : BaseTest
         Assert.Equal(birthDate, user.Birthdate);
         Assert.Equal(username, user.Username);
         Assert.True(user.IsActive);
+        Assert.Empty(user.Followers);
     }
 
     [Fact]
@@ -97,7 +98,22 @@ public class UserTest : BaseTest
         Assert.False(user.IsActive);
     }
 
-    
+    [Fact]
+    public void UserTest_Create_AddFollower()
+    {
+        // Arrange
+        var user = GetUserScene();
+        const int followerId = 1;
+
+        // Action
+        user.AddFollower(followerId);
+
+        // Assert
+        Assert.NotEmpty(user.Followers);
+        Assert.Equal(user.Id, user.Followers.First().UserId);
+        Assert.Equal(followerId, user.Followers.First().FollowerId);
+    }
+
     #region Private Methods
 
     private Entity.User GetUserScene()

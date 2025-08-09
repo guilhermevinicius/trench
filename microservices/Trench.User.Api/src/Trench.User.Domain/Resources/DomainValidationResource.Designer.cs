@@ -68,5 +68,17 @@ namespace Trench.User.Domain.Resources {
                 return ResourceManager.GetString("UserNotFound", resourceCulture);
             }
         }
+        
+        public static string AlreadyFollowerExists {
+            get {
+                return ResourceManager.GetString("AlreadyFollowerExists", resourceCulture);
+            }
+        }
+        
+        public static string FollowYourself {
+            get {
+                return ResourceManager.GetString("FollowYourself", resourceCulture);
+            }
+        }
     }
 }

@@ -155,7 +155,17 @@ public class IntegrationTestWebAppFactory : WebApplicationFactory<Program>, IAsy
 
         user.SetIdentityId("identityId");
 
+        var user2 = Entity.User.Create(
+            "Trench2",
+            "LTA",
+            "trench2@trench.com",
+            "trench2",
+            DateTime.UtcNow);
+
+        user2.SetIdentityId("identityId2");
+
         await context.AddAsync(user, CancellationToken.None);
+        await context.AddAsync(user2, CancellationToken.None);
     }
     
     #endregion
