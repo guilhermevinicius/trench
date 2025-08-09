@@ -3,6 +3,7 @@
     <File Path="docker\Dockerfile" />
     <File Path="README.MD" />
     <File Path="Directory.Build.props" />
+    <File Path="docker\compose.yml" />
   </Folder>
   <Folder Name="/src/">
     <Project Path="src\Trench.User.Api\Trench.User.Api.csproj" Type="Classic C#" />

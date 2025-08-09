@@ -7,7 +7,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Testcontainers.PostgreSql;
 using Testcontainers.RabbitMq;
+using Trench.User.Api.Configurations.Authentication;
 using Trench.User.Domain.Integrations;
+using Trench.User.FunctionalTests.Config.Authentication;
 using Trench.User.FunctionalTests.Config.Integration;
 using Trench.User.MessageQueue.Configurations;
 using Trench.User.Persistence.Postgres;
@@ -52,6 +54,8 @@ public class IntegrationTestWebAppFactory : WebApplicationFactory<Program>, IAsy
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
+        builder.UseEnvironment("Test");
+
         builder.ConfigureTestServices(services =>
         {
             var dbContextOptionsDescriptor = services.SingleOrDefault(descriptor =>
@@ -70,6 +74,13 @@ public class IntegrationTestWebAppFactory : WebApplicationFactory<Program>, IAsy
             services.Remove(integrationIdentity!);
 
             services.AddScoped<IIntegrationIdentity, IntegrationIdentityMock>();
+
+            var userContext = services.SingleOrDefault(descriptor => 
+                descriptor.ServiceType == typeof(UserContext));
+
+            services.Remove(userContext!);
+
+            services.AddScoped<IUserContext, UserContextMock>();
 
             var settings = _rabbitMqContainer.GetConnectionString().Split(":");
             var login = settings[1].Replace("//", "");
@@ -97,7 +108,7 @@ public class IntegrationTestWebAppFactory : WebApplicationFactory<Program>, IAsy
         });
     }
 
-    public async Task<HttpResponseMessage> SendRequest(HttpMethod httpMethod, string requestUri, string jsonContent)
+    public async Task<HttpResponseMessage> SendRequest(HttpMethod httpMethod, string requestUri, string? jsonContent)
     {
         var request = new HttpRequestMessage(httpMethod, requestUri);
 
