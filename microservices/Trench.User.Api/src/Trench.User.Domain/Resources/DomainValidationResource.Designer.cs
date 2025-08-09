@@ -62,5 +62,11 @@ namespace Trench.User.Domain.Resources {
                 return ResourceManager.GetString("ErrorCreatingAccount", resourceCulture);
             }
         }
+        
+        public static string UserNotFound {
+            get {
+                return ResourceManager.GetString("UserNotFound", resourceCulture);
+            }
+        }
     }
 }
