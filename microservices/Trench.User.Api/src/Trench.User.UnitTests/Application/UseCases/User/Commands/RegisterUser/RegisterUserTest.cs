@@ -6,7 +6,7 @@ using Trench.User.Domain.SeedWorks;
 using Trench.User.UnitTests.Config;
 using Entity = Trench.User.Domain.Aggregates.Users.Entities;
 
-namespace Trench.User.UnitTests.Application.UseCases.User.RegisterUser;
+namespace Trench.User.UnitTests.Application.UseCases.User.Commands.RegisterUser;
 
 [Collection(nameof(RegisterUserAutoMockerCollection))]
 public class RegisterUserTest(RegisterUserAutoMockerFixture fixture) : BaseTest
