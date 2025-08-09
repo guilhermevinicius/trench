@@ -25,5 +25,7 @@ services:
       Keycloak__AdminClientSecret: "qXBOhlrNW6KV5bIfRHGuWPaCWRRspxur"
       Keycloak__AuthClientId: "trench-user"
       Keycloak__AuthClientSecret: "G7INeTbBFf6YiCUULJDRrLILrPeoQJPI"
+      Jwt__Issuers: "http://localhost:8080/realms/trench"
+      Jwt__Audience: "account"
     networks:
       - trench-network

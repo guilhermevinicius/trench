@@ -1,5 +1,6 @@
 using Scalar.AspNetCore;
 using Serilog;
+using Trench.User.Api.Configurations.Authentication;
 using Trench.User.Api.Configurations.Endpoints;
 using Trench.User.Api.Configurations.ExceptionHandler;
 using Trench.User.Api.Configurations.HealthCheck;
@@ -55,7 +56,7 @@ internal static class ApiDependencyInjection
 
         services.AddCors();
 
-        services.AddAuthentication();
+        services.ConfigureAuthentication(configuration);
 
         services.AddAuthorization();
 
