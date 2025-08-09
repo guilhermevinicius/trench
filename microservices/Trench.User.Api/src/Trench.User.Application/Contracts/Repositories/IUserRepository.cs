@@ -9,5 +9,5 @@ public interface IUserRepository
     Task<bool> AlreadyEmailExists(string email, CancellationToken cancellationToken);
     Task InsertAsync(Entity.User user, CancellationToken cancellationToken);
 
-    Task<GetUserLoggingDto?> GetUserLogging(int userId, CancellationToken cancellationToken);
+    Task<GetUserLoggingDto?> GetUserLogging(string userId, CancellationToken cancellationToken);
 }

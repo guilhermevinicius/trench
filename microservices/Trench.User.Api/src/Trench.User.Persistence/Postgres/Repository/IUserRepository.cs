@@ -25,11 +25,11 @@ internal sealed class UserRepository(
             .AnyAsync(x => x.Email == email, cancellationToken);
     }
 
-    public async Task<GetUserLoggingDto?> GetUserLogging(int userId, CancellationToken cancellationToken)
+    public async Task<GetUserLoggingDto?> GetUserLogging(string userId, CancellationToken cancellationToken)
     {
         return await _users
             .AsNoTracking()
-            .Where(x => x.Id == userId)
+            .Where(x => x.IdentityId == userId)
             .Select(user => new GetUserLoggingDto(
                 user.FirstName,
                 user.LastName,

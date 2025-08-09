@@ -30,6 +30,8 @@ internal static class AuthenticationConfig
 
         services.AddHttpContextAccessor();
 
+        services.AddScoped<IUserContext, UserContext>();
+
         return services;
     }
 }

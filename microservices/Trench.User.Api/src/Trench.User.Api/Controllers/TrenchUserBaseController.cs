@@ -1,12 +1,16 @@
 using System.Net;
 using FluentResults;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Trench.User.Api.Dtos;
 
-namespace Trench.User.Api.Extensions;
+namespace Trench.User.Api.Controllers;
 
-public static class ResultExtensions
+[Authorize]
+[ApiController]
+public abstract class TrenchUserBaseController : ControllerBase
 {
-    public static IResult CustomResponse<T>(this Result<T> result, HttpStatusCode httpStatusCode)
+    public static IResult CustomResponse<T>(Result<T> result, HttpStatusCode httpStatusCode)
     {
         return BuildCustomResponse(result, httpStatusCode);
     }

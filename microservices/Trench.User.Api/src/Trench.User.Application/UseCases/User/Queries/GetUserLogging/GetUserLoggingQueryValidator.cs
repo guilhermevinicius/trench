@@ -8,7 +8,6 @@ internal class GetUserLoggingQueryValidator : AbstractValidator<GetUserLoggingQu
     {
         RuleFor(x => x.UserId)
             .NotEmpty()
-            .NotNull()
-            .GreaterThan(0);
+            .NotNull();
     }
 }

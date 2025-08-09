@@ -23,7 +23,7 @@ public class GetUserLoggingAutoMockerFixture : BaseTest
     public void MockUserLogging()
     {
         AutoMocker.GetMock<IUserRepository>()
-            .Setup(x => x.GetUserLogging(It.IsAny<int>(), CancellationToken.None))
+            .Setup(x => x.GetUserLogging(It.IsAny<string>(), CancellationToken.None))
             .ReturnsAsync(GetUserLoggingScene);
     }
 

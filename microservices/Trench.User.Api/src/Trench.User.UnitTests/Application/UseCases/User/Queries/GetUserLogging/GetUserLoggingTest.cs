@@ -12,7 +12,7 @@ public class GetUserLoggingTest(GetUserLoggingAutoMockerFixture fixture) : BaseT
     {
         // Arrange
         var query = new GetUserLoggingQuery(
-            Faker.Random.Int());
+            Faker.Random.Guid().ToString());
 
         // Action
         var handler = fixture.GetInstance();
@@ -28,7 +28,7 @@ public class GetUserLoggingTest(GetUserLoggingAutoMockerFixture fixture) : BaseT
     {
         // Arrange
         var query = new GetUserLoggingQuery(
-            Faker.Random.Int());
+            Faker.Random.Guid().ToString());
 
         // Action
         var handler = fixture.GetInstance();

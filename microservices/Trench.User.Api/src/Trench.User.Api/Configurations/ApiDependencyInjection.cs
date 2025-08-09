@@ -1,7 +1,6 @@
 using Scalar.AspNetCore;
 using Serilog;
 using Trench.User.Api.Configurations.Authentication;
-using Trench.User.Api.Configurations.Endpoints;
 using Trench.User.Api.Configurations.ExceptionHandler;
 using Trench.User.Api.Configurations.HealthCheck;
 using Trench.User.Api.Configurations.Observability;
@@ -32,7 +31,10 @@ internal static class ApiDependencyInjection
         
         app.ApplyMigrations();
 
-        app.MapEndpoints();
+        if (app.Environment.IsEnvironment("Test"))
+            app.MapControllers().AllowAnonymous();
+        else
+            app.MapControllers();
 
         app.UseHttpsRedirection();
 
@@ -50,7 +52,7 @@ internal static class ApiDependencyInjection
     {
         services.AddOpenApi();
 
-        services.AddEndpoints();
+        services.AddControllers();
 
         services.AddHealthCheckConfiguration(configuration);
 

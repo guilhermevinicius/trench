@@ -11,7 +11,7 @@ public class GetUserLoggingTest(IntegrationTestWebAppFactory fixture) : BaseTest
     public async Task GetUserLogging_Handler_ShouldBeReturnUserLogging()
     {
         // Arrange
-        var query = new GetUserLoggingQuery(1);
+        var query = new GetUserLoggingQuery("identityId");
 
         // Action
         var result = await fixture.Sender.Send(query, CancellationToken.None);
@@ -25,7 +25,7 @@ public class GetUserLoggingTest(IntegrationTestWebAppFactory fixture) : BaseTest
     public async Task GetUserLogging_Handler_ShouldBeReturnErrorWhenValidatorFailed()
     {
         // Arrange
-        var query = new GetUserLoggingQuery(0);
+        var query = new GetUserLoggingQuery("");
 
         // Action
         var result = await fixture.Sender.Send(query, CancellationToken.None);
@@ -39,7 +39,7 @@ public class GetUserLoggingTest(IntegrationTestWebAppFactory fixture) : BaseTest
     public async Task GetUserLogging_Handler_ShouldBeReturnErrorWhenUserNotFound()
     {
         // Arrange
-        var query = new GetUserLoggingQuery(Faker.Random.Int());
+        var query = new GetUserLoggingQuery(Faker.Random.Guid().ToString());
 
         // Action
         var result = await fixture.Sender.Send(query, CancellationToken.None);
