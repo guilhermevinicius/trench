@@ -1,0 +1,41 @@
+.input {
+  width: 100%;
+  height: 48px;
+  border-radius: 12px;
+  border: 2px solid transparent;
+  background: #F4F4F4;
+  padding: 0 10px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #1A1D1F;
+  transition: all 0.2s;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  i {
+    color: oklch(58.5% 0.233 277.117);
+  }
+
+  input {
+    width: 100%;
+    height: 100%;
+    outline: none;
+    background: transparent;
+    padding: 0 16px;
+  }
+
+}
+
+:host.ng-dirty.ng-invalid {
+  i {
+    color: oklch(57.7% .245 27.325);
+  }
+}
+
+:host.ng-dirty.ng-valid {
+  i {
+    color: oklch(62.7% .194 149.214);
+  }
+}

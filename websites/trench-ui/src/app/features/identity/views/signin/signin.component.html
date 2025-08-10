@@ -1,0 +1,20 @@
+<div class="w-[360px] m-auto flex flex-col items-center pt-20">
+  <img src="/logo.png" alt="Logo" class="h-[80px] mb-4">
+  <h1 class="text-3xl font-bold">Let`s sign you in</h1>
+  <p class="text-sm text-gray-500 font-light">
+    Welcome back,
+    You`ve been missed!
+  </p>
+  <form [formGroup]="signInForm" (submit)="signInSubmit()" class="w-full my-8 flex flex-col gap-4">
+    <app-input type="email" formControlName="email" label="Email" icon="fa fa-envelope" />
+    <app-input type="password" formControlName="password" label="Senha" icon="fa fa-lock" />
+    <app-button label="SignIn" type="submit" [disabled]="!signInForm.valid" [loading]="loading" />
+  </form>
+
+  <div>
+    <p class="text-gray-500">
+      Don't have an account?
+      <a class="text-indigo-500 font-bold">SignUp</a>
+    </p>
+  </div>
+</div>

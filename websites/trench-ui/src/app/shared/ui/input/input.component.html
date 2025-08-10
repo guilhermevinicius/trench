@@ -1,0 +1,16 @@
+<div class="input">
+  @if (icon) {
+    <i [class]="icon"></i>
+  }
+  <input
+    [type]="type"
+    [value]="value"
+    (input)="onInput($event)"
+    (blur)="onTouched()"
+    [placeholder]="label">
+</div>
+@if (ngControl?.invalid && ngControl?.touched) {
+<span class="text-sm text-red-500">
+  {{ getErrorMessage() }}
+</span>
+}

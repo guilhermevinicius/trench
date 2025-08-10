@@ -1,0 +1,7 @@
+<button class="px-4 rounded-[12px] bg-indigo-500" [type]="type" [disabled]="disabled || loading">
+  @if(loading) {
+    <img src="/icons/loading.svg" alt="" class="m-auto">
+  } @else {
+    {{ label }}
+  }
+</button>
