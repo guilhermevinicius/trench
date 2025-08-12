@@ -17,9 +17,9 @@ export class AcsAuthenticationGuard implements CanActivate {
 
     if (!user) {
       if (!state.url.startsWith('signin')) {
-        this.authenticationService.returnUrl = state.url;
+        // this.authenticationService.returnUrl = state.url;
       } else {
-        this.authenticationService.returnUrl = '/';
+        // this.authenticationService.returnUrl = '/';
       }
 
       this.router.navigate(['signin']);

@@ -11,6 +11,8 @@
     <app-button label="SignIn" type="submit" [disabled]="!signInForm.valid" [loading]="loading" />
   </form>
 
+  <button (click)="login()">SignIn</button>
+
   <div>
     <p class="text-gray-500">
       Don't have an account?

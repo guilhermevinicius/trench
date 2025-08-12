@@ -3,20 +3,23 @@ import { inject, Injectable } from '@angular/core';
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 
 import { from, Observable, switchMap } from 'rxjs';
-import { AuthenticationService } from '../auth';
+import Keycloak from 'keycloak-js';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AcsHttpRequestInterceptor implements HttpInterceptor {
-  #authenticationService = inject(AuthenticationService);
-
-  constructor(
-    private router: Router
-  ) { }
+export class TrenchHttpRequestInterceptor implements HttpInterceptor {
+  #keycloak = inject(Keycloak);
+  #router = inject(Router)
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    return from(this.#authenticationService.getValidToken())
+    console.log("interceptor")
+
+    if (this.#keycloak.authenticated) {
+      console.log("ok");
+    }
+
+    return from("")
       .pipe(switchMap((token) => {
         if (token) {
           const request = req.clone({
@@ -30,7 +33,7 @@ export class AcsHttpRequestInterceptor implements HttpInterceptor {
           });
           return next.handle(request);
         } else {
-          this.router.navigate(['signin'])
+          this.#router.navigate(['signin'])
           return next.handle(req);
         }
       }));

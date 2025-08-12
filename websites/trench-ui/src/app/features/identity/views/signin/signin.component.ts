@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {ButtonComponent} from '@shared/ui/button/button.component';
 import {InputComponent} from '@shared/ui/input/input.component';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import Keycloak from 'keycloak-js';
 
 @Component({
   selector: 'app-signin',
@@ -14,6 +15,7 @@ import {FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/
   styleUrl: './signin.component.scss'
 })
 export class SigninComponent {
+  keycloakService = inject(Keycloak);
   loading = false;
 
   signInForm = new FormGroup({
@@ -24,5 +26,9 @@ export class SigninComponent {
   signInSubmit() {
     console.log("SignIn")
     this.loading = true;
+  }
+
+  async login() {
+    await this.keycloakService.login();
   }
 }

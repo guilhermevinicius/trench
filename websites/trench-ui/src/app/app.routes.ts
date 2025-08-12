@@ -8,6 +8,5 @@ export const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./features/identity/identity.route'),
-
   }
 ];

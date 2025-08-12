@@ -1,15 +1,18 @@
 import {ApplicationConfig, provideZoneChangeDetection} from '@angular/core';
+import {HTTP_INTERCEPTORS, provideHttpClient, withInterceptors, withInterceptorsFromDi} from '@angular/common/http';
 import {provideRouter} from '@angular/router';
 
 import {routes} from './app.routes';
-import {provideClientHydration, withEventReplay} from '@angular/platform-browser';
-import {provideKeycloak} from 'keycloak-angular';
+import {
+  AutoRefreshTokenService,
+  includeBearerTokenInterceptor,
+  provideKeycloak,
+  UserActivityService
+} from 'keycloak-angular';
+import {TrenchHttpRequestInterceptor} from './core/settings';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideZoneChangeDetection({eventCoalescing: true}),
-    provideRouter(routes),
-    provideClientHydration(withEventReplay()),
     provideKeycloak({
       config: {
         url: 'http://localhost:8080',
@@ -18,8 +21,26 @@ export const appConfig: ApplicationConfig = {
       },
       initOptions: {
         onLoad: 'check-sso',
-        silentCheckSsoRedirectUri: typeof window !== 'undefined' ? `${window.location.origin}/silent-check-sso.html` : '',
-      }
+        checkLoginIframe: false,
+        enableLogging: true,
+        silentCheckSsoRedirectUri: window.location.origin + '/silent-check-sso.html',
+        redirectUri: window.location.origin + '/signin'
+      },
+      providers: [
+        AutoRefreshTokenService,
+        UserActivityService
+      ]
     }),
+    provideZoneChangeDetection({eventCoalescing: true}),
+    provideRouter(routes),
+    provideHttpClient(
+      withInterceptors([includeBearerTokenInterceptor]),
+      withInterceptorsFromDi()
+    ),
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TrenchHttpRequestInterceptor,
+      multi: true
+    }
   ]
 };

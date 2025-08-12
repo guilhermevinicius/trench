@@ -5,7 +5,7 @@ export const mainRoute: Routes = [
   {
     path: 'p',
     component: MainLayoutComponent,
-    loadChildren: () => import('../profile/profile.route'),
+    loadChildren: () => import('../profile/profile.route').then(res => res.default),
   }
 ];
 
