@@ -13,6 +13,7 @@ public class User : Entity
     public DateTime Birthdate { get; private set; }
     public string? Bio { get; private set; }
     public bool IsActive { get; private set; } = true;
+    public bool IsPublic { get; private set; }
     private IList<UserFollower> _followers = [];
     public IReadOnlyCollection<UserFollower> Followers => _followers.AsReadOnly();
 

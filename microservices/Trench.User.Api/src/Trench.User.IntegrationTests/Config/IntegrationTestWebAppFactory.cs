@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Testcontainers.PostgreSql;
 using Testcontainers.RabbitMq;
+using Trench.User.Domain.Aggregates.Follower.Entities;
 using Trench.User.Domain.Integrations;
 using Trench.User.IntegrationTests.Config.Integration;
 using Trench.User.MessageQueue.Configurations;
@@ -119,6 +120,8 @@ public class IntegrationTestWebAppFactory : WebApplicationFactory<Program>, IAsy
 
         await PopulateUser(context);
 
+        await PopulateFollowers(context);
+
         await context.SaveChangesAsync();
     }
 
@@ -144,6 +147,13 @@ public class IntegrationTestWebAppFactory : WebApplicationFactory<Program>, IAsy
 
         await context.AddAsync(user, CancellationToken.None);
         await context.AddAsync(user2, CancellationToken.None);
+    }
+
+    private static async Task PopulateFollowers(PostgresDbContext context)
+    {
+        var followers = Followers.Create(1, 2, false);
+
+        await context.AddAsync(followers, CancellationToken.None);
     }
 
     #endregion
