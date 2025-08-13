@@ -25,7 +25,7 @@ public class UserTest : BaseTest
         Assert.Equal(birthDate, user.Birthdate);
         Assert.Equal(username, user.Username);
         Assert.True(user.IsActive);
-        Assert.Empty(user.Followers);
+        Assert.True(user.IsPublic);
     }
 
     [Fact]
@@ -84,7 +84,7 @@ public class UserTest : BaseTest
         // Assert
         Assert.True(user.IsActive);
     }
-    
+
     [Fact]
     public void UserTest_Create_Deactivate()
     {
@@ -99,19 +99,30 @@ public class UserTest : BaseTest
     }
 
     [Fact]
-    public void UserTest_Create_AddFollower()
+    public void UserTest_Create_MakePublic()
     {
         // Arrange
         var user = GetUserScene();
-        const int followerId = 1;
 
         // Action
-        user.AddFollower(followerId);
+        user.MakePrivate();
+        user.MakePublic();
 
         // Assert
-        Assert.NotEmpty(user.Followers);
-        Assert.Equal(user.Id, user.Followers.First().UserId);
-        Assert.Equal(followerId, user.Followers.First().FollowerId);
+        Assert.True(user.IsPublic);
+    }
+
+    [Fact]
+    public void UserTest_Create_MakePrivate()
+    {
+        // Arrange
+        var user = GetUserScene();
+
+        // Action
+        user.MakePrivate();
+
+        // Assert
+        Assert.False(user.IsPublic);
     }
 
     #region Private Methods
@@ -127,5 +138,4 @@ public class UserTest : BaseTest
     }
 
     #endregion
-    
 }

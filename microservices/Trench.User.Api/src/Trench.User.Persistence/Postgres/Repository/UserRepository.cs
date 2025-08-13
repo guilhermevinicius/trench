@@ -25,13 +25,6 @@ internal sealed class UserRepository(
             .AnyAsync(x => x.Email == email, cancellationToken);
     }
 
-    public async Task<bool> AlreadyFollowerExists(int userId, int followerId, CancellationToken cancellationToken)
-    {
-        return await _users
-            .AsNoTracking()
-            .AnyAsync(x => x.Id == userId && x.Followers.Any(f => f.FollowerId == followerId), cancellationToken);
-    }
-
     public async Task<Entity.User?> GetById(int userId, CancellationToken cancellationToken)
     {
         return await _users.FirstOrDefaultAsync(x => x.Id == userId, cancellationToken);

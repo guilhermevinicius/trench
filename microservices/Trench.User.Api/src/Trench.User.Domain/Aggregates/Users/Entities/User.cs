@@ -13,9 +13,7 @@ public class User : Entity
     public DateTime Birthdate { get; private set; }
     public string? Bio { get; private set; }
     public bool IsActive { get; private set; } = true;
-    public bool IsPublic { get; private set; }
-    private IList<UserFollower> _followers = [];
-    public IReadOnlyCollection<UserFollower> Followers => _followers.AsReadOnly();
+    public bool IsPublic { get; private set; } = true;
 
     private User(string firstName, string lastName, string email, string username, DateTime birthdate)
     {
@@ -60,8 +58,13 @@ public class User : Entity
         IsActive = false;
     }
 
-    public void AddFollower(int followerId)
+    public void MakePublic()
     {
-        _followers.Add(UserFollower.Create(Id, followerId));
+        IsPublic = true;
+    }
+
+    public void MakePrivate()
+    {
+        IsPublic = false;
     }
 }

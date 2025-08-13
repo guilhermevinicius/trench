@@ -54,10 +54,5 @@ internal sealed class UserMapping
 
         builder.Property(x => x.UpdateOnUtc)
             .HasColumnType("timestamp with time zone");
-
-        builder.HasMany(x => x.Followers)
-            .WithOne(x => x.User)
-            .HasForeignKey(x => x.UserId)
-            .OnDelete(DeleteBehavior.Cascade);
     }
 }

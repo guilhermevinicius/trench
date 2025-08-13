@@ -3,8 +3,6 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Trench.User.Api.Configurations.Authentication;
-using Trench.User.Api.Controllers.V1.Dtos.Follower;
-using Trench.User.Application.UseCases.User.Commands.Follower;
 using Trench.User.Application.UseCases.User.Commands.RegisterUser;
 using Trench.User.Application.UseCases.User.Queries.GetUserLogging;
 
@@ -43,24 +41,6 @@ public class UserController(
         RegisterUserCommand command,
         CancellationToken cancellationToken)
     {
-        var result = await sender.Send(command, cancellationToken);
-
-        return CustomResponse(result, HttpStatusCode.Created);
-    }
-
-    /// <summary>
-    /// Add new follower
-    /// </summary>
-    /// <param name="request"></param>
-    /// <param name="cancellationToken"></param>
-    /// <returns></returns>
-    [HttpPost("follower")]
-    public async Task<IResult> AddFollower(FollowerRequest request, CancellationToken cancellationToken)
-    {
-        var command = new FollowerCommand(
-            userContext.UserId(),
-            request.FollowerId);
-
         var result = await sender.Send(command, cancellationToken);
 
         return CustomResponse(result, HttpStatusCode.Created);

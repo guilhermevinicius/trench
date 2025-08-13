@@ -98,24 +98,4 @@ public class UserControllerTest(IntegrationTestWebAppFactory fixture)
         Assert.True(response?.Success);
         Assert.Equal(200, response?.StatusCode);
     }
-
-    [Fact]
-    public async Task UserEndpoint_Follower_ShouldBeReturnSuccess()
-    {
-        // Arrange
-        var uri = "/api/v1/users/follower";
-        const string body = $$"""
-                              {
-                                "followerId": 2
-                              }
-                              """;
-
-        // Action
-        var responseMessage = await fixture.SendRequest(HttpMethod.Post, uri, body);
-        var response = await JsonHelper.DeserializeResponse(responseMessage);
-
-        // Assert
-        Assert.True(response?.Success);
-        Assert.Equal(201, response?.StatusCode);
-    }
 }
