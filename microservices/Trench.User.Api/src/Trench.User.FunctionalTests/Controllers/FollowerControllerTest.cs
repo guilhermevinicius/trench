@@ -1,3 +1,4 @@
+using Trench.User.Domain.Aggregates.Follower.Dtos;
 using Trench.User.FunctionalTests.Config;
 using Trench.User.FunctionalTests.Config.Helpers;
 
@@ -6,6 +7,21 @@ namespace Trench.User.FunctionalTests.Controllers;
 [Collection(nameof(IntegrationTestWebAppFactoryCollection))]
 public class FollowerControllerTest(IntegrationTestWebAppFactory fixture) : BaseTest
 {
+    [Fact]
+    public async Task FollowerController_GetFollowers_ShouldBeSuccess()
+    {
+        // Arrange
+        const string uri = "/api/v1/followers";
+
+        // Action
+        var responseMessage = await fixture.SendRequest(HttpMethod.Get, uri, null);
+        var response = await JsonHelper.DeserializeResponse(responseMessage);
+
+        // Assert
+        Assert.True(response?.Success);
+        Assert.Equal(200, response?.StatusCode);
+    }
+
     [Fact]
     public async Task FollowerController_Follow_ShouldBeSuccess()
     {

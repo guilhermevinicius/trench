@@ -151,9 +151,11 @@ public class IntegrationTestWebAppFactory : WebApplicationFactory<Program>, IAsy
 
     private static async Task PopulateFollowers(PostgresDbContext context)
     {
-        var followers = Followers.Create(1, 2, false);
+        var followers = Followers.Create(1, 2, true);
+        var followers2 = Followers.Create(2, 1, true);
 
         await context.AddAsync(followers, CancellationToken.None);
+        await context.AddAsync(followers2, CancellationToken.None);
     }
 
     #endregion
