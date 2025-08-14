@@ -13,6 +13,7 @@ public class User : Entity
     public DateTime Birthdate { get; private set; }
     public string? Bio { get; private set; }
     public bool IsActive { get; private set; } = true;
+    public bool IsPublic { get; private set; } = true;
 
     private User(string firstName, string lastName, string email, string username, DateTime birthdate)
     {
@@ -55,5 +56,15 @@ public class User : Entity
     public void Deactivate()
     {
         IsActive = false;
+    }
+
+    public void MakePublic()
+    {
+        IsPublic = true;
+    }
+
+    public void MakePrivate()
+    {
+        IsPublic = false;
     }
 }

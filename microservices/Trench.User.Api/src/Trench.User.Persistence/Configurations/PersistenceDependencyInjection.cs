@@ -27,5 +27,6 @@ public static class PersistenceDependencyInjection
         services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<PostgresDbContext>());
 
         services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IFollowerRepository, FollowerRepository>();
     }
 }

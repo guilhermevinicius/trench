@@ -25,6 +25,7 @@ public class UserTest : BaseTest
         Assert.Equal(birthDate, user.Birthdate);
         Assert.Equal(username, user.Username);
         Assert.True(user.IsActive);
+        Assert.True(user.IsPublic);
     }
 
     [Fact]
@@ -83,7 +84,7 @@ public class UserTest : BaseTest
         // Assert
         Assert.True(user.IsActive);
     }
-    
+
     [Fact]
     public void UserTest_Create_Deactivate()
     {
@@ -97,7 +98,33 @@ public class UserTest : BaseTest
         Assert.False(user.IsActive);
     }
 
-    
+    [Fact]
+    public void UserTest_Create_MakePublic()
+    {
+        // Arrange
+        var user = GetUserScene();
+
+        // Action
+        user.MakePrivate();
+        user.MakePublic();
+
+        // Assert
+        Assert.True(user.IsPublic);
+    }
+
+    [Fact]
+    public void UserTest_Create_MakePrivate()
+    {
+        // Arrange
+        var user = GetUserScene();
+
+        // Action
+        user.MakePrivate();
+
+        // Assert
+        Assert.False(user.IsPublic);
+    }
+
     #region Private Methods
 
     private Entity.User GetUserScene()
@@ -111,5 +138,4 @@ public class UserTest : BaseTest
     }
 
     #endregion
-    
 }

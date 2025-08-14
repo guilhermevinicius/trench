@@ -9,5 +9,7 @@ public interface IUserRepository
     Task<bool> AlreadyEmailExists(string email, CancellationToken cancellationToken);
     Task InsertAsync(Entity.User user, CancellationToken cancellationToken);
 
+    Task<Entity.User?> GetByIdentityId(string identityId, CancellationToken cancellationToken);
+    Task<Entity.User?> GetById(int userId, CancellationToken cancellationToken);
     Task<GetUserLoggingDto?> GetUserLogging(string userId, CancellationToken cancellationToken);
 }

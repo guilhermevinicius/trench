@@ -22,6 +22,49 @@ namespace Trench.User.Persistence.Postgres.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("Trench.User.Domain.Aggregates.Follower.Entities.Followers", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("Accepted")
+                        .HasColumnType("boolean")
+                        .HasColumnName("accepted");
+
+                    b.Property<DateTime>("CreatedOnUtc")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("created_on_utc");
+
+                    b.Property<int>("FollowerId")
+                        .HasColumnType("integer")
+                        .HasColumnName("follower_id");
+
+                    b.Property<int>("FollowingId")
+                        .HasColumnType("integer")
+                        .HasColumnName("following_id");
+
+                    b.Property<bool>("IsRequired")
+                        .HasColumnType("boolean")
+                        .HasColumnName("is_required");
+
+                    b.Property<DateTime>("UpdateOnUtc")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("update_on_utc");
+
+                    b.HasKey("Id")
+                        .HasName("pk_followers");
+
+                    b.HasIndex("Id")
+                        .IsUnique()
+                        .HasDatabaseName("ix_followers_id");
+
+                    b.ToTable("Followers", (string)null);
+                });
+
             modelBuilder.Entity("Trench.User.Domain.Aggregates.Users.Entities.User", b =>
                 {
                     b.Property<int>("Id")
@@ -61,6 +104,10 @@ namespace Trench.User.Persistence.Postgres.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("boolean")
                         .HasColumnName("is_active");
+
+                    b.Property<bool>("IsPublic")
+                        .HasColumnType("boolean")
+                        .HasColumnName("is_public");
 
                     b.Property<string>("LastName")
                         .IsRequired()

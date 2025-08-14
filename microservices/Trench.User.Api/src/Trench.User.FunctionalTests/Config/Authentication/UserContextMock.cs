@@ -8,4 +8,9 @@ internal class UserContextMock : IUserContext
     {
         return "identityId";
     }
+
+    public int UserIdAsInt()
+    {
+        return 1;
+    }
 }

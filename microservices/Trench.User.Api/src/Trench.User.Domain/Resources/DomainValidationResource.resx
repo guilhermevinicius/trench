@@ -30,4 +30,10 @@
     <data name="UserNotFound" xml:space="preserve">
         <value>User not found</value>
     </data>
+    <data name="AlreadyFollowerExists" xml:space="preserve">
+        <value>Already follower exists</value>
+    </data>
+    <data name="FollowYourself" xml:space="preserve">
+        <value>Is that right?, do you want to follow it yourself?</value>
+    </data>
 </root>

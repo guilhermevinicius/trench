@@ -25,6 +25,11 @@ internal sealed class UserRepository(
             .AnyAsync(x => x.Email == email, cancellationToken);
     }
 
+    public async Task<Entity.User?> GetById(int userId, CancellationToken cancellationToken)
+    {
+        return await _users.FirstOrDefaultAsync(x => x.Id == userId, cancellationToken);
+    }
+
     public async Task<GetUserLoggingDto?> GetUserLogging(string userId, CancellationToken cancellationToken)
     {
         return await _users
@@ -40,5 +45,10 @@ internal sealed class UserRepository(
     public async Task InsertAsync(Entity.User user, CancellationToken cancellationToken)
     {
         await _users.AddAsync(user, cancellationToken);
+    }
+
+    public async Task<Entity.User?> GetByIdentityId(string identityId, CancellationToken cancellationToken)
+    {
+        return await _users.FirstOrDefaultAsync(x => x.IdentityId == identityId, cancellationToken);
     }
 }

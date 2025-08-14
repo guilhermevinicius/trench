@@ -9,4 +9,9 @@ public class UserContext(IHttpContextAccessor contextAccessor) : IUserContext
         return contextAccessor.HttpContext?.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)
             ?.Value!;
     }
+
+    public int UserIdAsInt()
+    {
+        return 1;
+    }
 }
