@@ -11,12 +11,19 @@ internal sealed class FollowerRepository(
 {
     private DbSet<Followers> _followers => context.Set<Followers>();
 
+    public async Task<Followers?> GetFollowerPending(int followerId, int followingId,
+        CancellationToken cancellationToken)
+    {
+        return await _followers.FirstOrDefaultAsync(x => 
+            x.FollowerId == followerId && x.FollowingId == followingId, cancellationToken);
+    }
+
     public async Task<ListFollowersPendingDto[]> ListFollowersPending(int followingId,
         CancellationToken cancellationToken)
     {
         return await (from f in context.Set<Followers>().AsNoTracking()
             join user in context.Set<Domain.Aggregates.Users.Entities.User>() on f.FollowerId equals user.Id
-            where f.FollowingId == followingId && !f.Accepted && f.IsRequired
+            where f.FollowingId == followingId && f.Accepted == null && f.IsRequired
             select new ListFollowersPendingDto(
                 user.Id,
                 user.PictureUrl,

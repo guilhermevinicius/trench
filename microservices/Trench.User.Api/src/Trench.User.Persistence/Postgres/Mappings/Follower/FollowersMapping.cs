@@ -26,8 +26,7 @@ internal sealed class FollowersMapping : IEntityTypeConfiguration<Followers>
         builder.Property(x => x.IsRequired)
             .IsRequired();
 
-        builder.Property(x => x.Accepted)
-            .IsRequired();
+        builder.Property(x => x.Accepted);
 
         builder.Property(x => x.CreatedOnUtc)
             .IsRequired();

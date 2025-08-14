@@ -80,5 +80,11 @@ namespace Trench.User.Domain.Resources {
                 return ResourceManager.GetString("FollowYourself", resourceCulture);
             }
         }
+        
+        public static string FollowersNotFound {
+            get {
+                return ResourceManager.GetString("FollowersNotFound", resourceCulture);
+            }
+        }
     }
 }
