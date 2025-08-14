@@ -34,7 +34,7 @@ public class FollowTest(IntegrationTestWebAppFactory fixture) : BaseTest
         Assert.False(result.IsSuccess);
         Assert.Equal(DomainValidationResource.AlreadyFollowerExists, result.Errors[0].Message);
     }
-    
+
     [Fact]
     public async Task Follow_Handler_ShouldBeReturnErrorWhenFollowerNotFound()
     {

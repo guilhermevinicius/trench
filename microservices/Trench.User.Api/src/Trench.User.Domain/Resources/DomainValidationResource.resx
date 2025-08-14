@@ -36,4 +36,7 @@
     <data name="FollowYourself" xml:space="preserve">
         <value>Is that right?, do you want to follow it yourself?</value>
     </data>
+    <data name="FollowersNotFound" xml:space="preserve">
+        <value>Followers not found</value>
+    </data>
 </root>
