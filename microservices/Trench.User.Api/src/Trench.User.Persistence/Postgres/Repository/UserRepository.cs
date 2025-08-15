@@ -38,7 +38,8 @@ internal sealed class UserRepository(
             .Select(user => new GetUserLoggingDto(
                 user.FirstName,
                 user.LastName,
-                user.Username))
+                user.Username,
+                user.Bio))
             .FirstOrDefaultAsync(cancellationToken);
     }
 
