@@ -9,6 +9,7 @@ services:
     environment:
       ASPNETCORE_ENVIRONMENT: "Development"
       ConnectionStrings__Postgres: "Host=trench-postgres;Port=5432;Database=trench_user;Username=trench;Password=trench@trench;"
+      ConnectionStrings__Redis: "redis:6379,password=my-secure-password"
       QueueSettings__Host: "amqp://trench-rabbitmq"
       QueueSettings__Username: "guest"
       QueueSettings__Password: "guest"
