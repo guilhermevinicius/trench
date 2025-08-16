@@ -8,9 +8,9 @@ namespace Trench.User.Application.UseCases.User.Queries.GetUserByUsername;
 
 internal sealed class GetUserByUsernameQueryHandler(
     IUserRepository userRepository) 
-    : IQueryHandler<GetUserByUsernameQuery, GetUserLoggingDto>
+    : IQueryHandler<GetUserByUsernameQuery, GetUserByUsernameDto>
 {
-    public async Task<Result<GetUserLoggingDto>> Handle(GetUserByUsernameQuery query,
+    public async Task<Result<GetUserByUsernameDto>> Handle(GetUserByUsernameQuery query,
         CancellationToken cancellationToken)
     {
         var user = await userRepository.GetByUsername(

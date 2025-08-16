@@ -29,13 +29,15 @@ public class GetUserByUsernameAutoMockerFixture : BaseTest
 
     #region Private Methods
 
-    private GetUserLoggingDto GetUserByUsernameScene()
+    private GetUserByUsernameDto GetUserByUsernameScene()
     {
-        return new GetUserLoggingDto(
+        return new GetUserByUsernameDto(
+            Faker.Random.Int(),
             Faker.Person.FirstName,
             Faker.Person.LastName,
             Faker.Person.UserName,
             Faker.Lorem.Letter(10),
+            Faker.Random.Bool(),
             Faker.Random.Bool(),
             Faker.Random.Bool());
     }

@@ -12,5 +12,5 @@ public interface IUserRepository
     Task<Entity.User?> GetByIdentityId(string identityId, CancellationToken cancellationToken);
     Task<Entity.User?> GetById(int userId, CancellationToken cancellationToken);
     Task<GetUserLoggingDto?> GetUserLogging(string userId, CancellationToken cancellationToken);
-    Task<GetUserLoggingDto?> GetByUsername(string identityId, string username, CancellationToken cancellationToken);
+    Task<GetUserByUsernameDto?> GetByUsername(string identityId, string username, CancellationToken cancellationToken);
 }
