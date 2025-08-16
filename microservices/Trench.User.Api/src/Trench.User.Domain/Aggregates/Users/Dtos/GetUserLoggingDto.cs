@@ -4,4 +4,6 @@ public sealed record GetUserLoggingDto(
     string FirstName,
     string LastName,
     string Username,
-    string? Bio);
+    string? Bio,
+    bool IsPublic,
+    bool IsOwner);

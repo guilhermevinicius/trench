@@ -39,7 +39,24 @@ internal sealed class UserRepository(
                 user.FirstName,
                 user.LastName,
                 user.Username,
-                user.Bio))
+                user.Bio,
+                user.IsPublic,
+                true))
+            .FirstOrDefaultAsync(cancellationToken);
+    }
+
+    public async Task<GetUserLoggingDto?> GetByUsername(string identityId, string username, CancellationToken cancellationToken)
+    {
+        return await _users
+            .AsNoTracking()
+            .Where(x => x.Username == username)
+            .Select(user => new GetUserLoggingDto(
+                user.FirstName,
+                user.LastName,
+                user.Username,
+                user.Bio,
+                user.IsPublic,
+                user.IdentityId == identityId))
             .FirstOrDefaultAsync(cancellationToken);
     }
 

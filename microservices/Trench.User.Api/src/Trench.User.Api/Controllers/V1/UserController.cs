@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Trench.User.Api.Configurations.Authentication;
 using Trench.User.Application.UseCases.User.Commands.RegisterUser;
+using Trench.User.Application.UseCases.User.Queries.GetUserByUsername;
 using Trench.User.Application.UseCases.User.Queries.GetUserLogging;
 
 namespace Trench.User.Api.Controllers.V1;
@@ -23,6 +24,22 @@ public class UserController(
     {
         var query = new GetUserLoggingQuery(
             userContext.UserId());
+
+        var result = await sender.Send(query, cancellationToken);
+
+        return CustomResponse(result, HttpStatusCode.OK);
+    }
+    
+    /// <summary>
+    /// Get user by username
+    /// </summary>
+    /// <returns></returns>
+    [HttpGet("{username}")]
+    public async Task<IResult> GetLoggingUser(string username, CancellationToken cancellationToken)
+    {
+        var query = new GetUserByUsernameQuery(
+            userContext.UserId(),
+            username);
 
         var result = await sender.Send(query, cancellationToken);
 

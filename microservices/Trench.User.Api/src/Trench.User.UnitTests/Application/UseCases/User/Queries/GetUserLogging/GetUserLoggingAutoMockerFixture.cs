@@ -35,7 +35,9 @@ public class GetUserLoggingAutoMockerFixture : BaseTest
             Faker.Person.FirstName,
             Faker.Person.LastName,
             Faker.Person.UserName,
-            null);
+            Faker.Lorem.Letter(10),
+            Faker.Random.Bool(),
+            Faker.Random.Bool());
     }
 
     #endregion

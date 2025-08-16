@@ -98,4 +98,34 @@ public class UserControllerTest(IntegrationTestWebAppFactory fixture)
         Assert.True(response?.Success);
         Assert.Equal(200, response?.StatusCode);
     }
+    
+    [Fact]
+    public async Task UserEndpoint_GetUserByUsername_ShouldBeSuccess()
+    {
+        // Arrange
+        const string uri = "/api/v1/users/trench";
+
+        // Action
+        var responseMessage = await fixture.SendRequest(HttpMethod.Get, uri, null);
+        var response = await JsonHelper.DeserializeResponse(responseMessage);
+
+        // Assert
+        Assert.True(response?.Success);
+        Assert.Equal(200, response?.StatusCode);
+    }
+
+    [Fact]
+    public async Task UserEndpoint_GetUserByUsername_ShouldBeReturnErrorWhenUsernameNotFound()
+    {
+        // Arrange
+        const string uri = "/api/v1/users/username-not-found";
+
+        // Action
+        var responseMessage = await fixture.SendRequest(HttpMethod.Get, uri, null);
+        var response = await JsonHelper.DeserializeResponse(responseMessage);
+
+        // Assert
+        Assert.False(response?.Success);
+        Assert.Equal(400, response?.StatusCode);
+    }
 }
