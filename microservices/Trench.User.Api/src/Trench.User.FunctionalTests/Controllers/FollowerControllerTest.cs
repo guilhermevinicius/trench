@@ -1,4 +1,3 @@
-using Trench.User.Domain.Aggregates.Follower.Dtos;
 using Trench.User.FunctionalTests.Config;
 using Trench.User.FunctionalTests.Config.Helpers;
 
@@ -29,7 +28,6 @@ public class FollowerControllerTest(IntegrationTestWebAppFactory fixture) : Base
         const string uri = "/api/v1/followers";
         const string json = $$"""
                              {
-                                "followerId": 1,
                                 "followingId": 1
                              }
                              """;
@@ -50,7 +48,6 @@ public class FollowerControllerTest(IntegrationTestWebAppFactory fixture) : Base
         const string uri = "/api/v1/followers";
         const string json = $$"""
                               {
-                                 "followerId": 1,
                                  "followingId": 2
                               }
                               """;
@@ -72,7 +69,6 @@ public class FollowerControllerTest(IntegrationTestWebAppFactory fixture) : Base
         const string uri = "/api/v1/followers";
         const string json = $$"""
                               {
-                                 "followerId": 1,
                                  "followingId": 200
                               }
                               """;
