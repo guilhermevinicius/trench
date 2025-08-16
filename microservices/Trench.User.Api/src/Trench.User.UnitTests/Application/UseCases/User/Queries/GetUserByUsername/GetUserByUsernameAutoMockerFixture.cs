@@ -33,11 +33,11 @@ public class GetUserByUsernameAutoMockerFixture : BaseTest
     {
         return new GetUserByUsernameDto(
             Faker.Random.Int(),
+            Guid.NewGuid().ToString(),
             Faker.Person.FirstName,
             Faker.Person.LastName,
             Faker.Person.UserName,
             Faker.Lorem.Letter(10),
-            Faker.Random.Bool(),
             Faker.Random.Bool(),
             Faker.Random.Bool(),
             Faker.Random.Bool());

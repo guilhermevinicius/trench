@@ -6,11 +6,6 @@ internal class GetUserByUsernameQueryValidator : AbstractValidator<GetUserByUser
 {
     public GetUserByUsernameQueryValidator()
     {
-        RuleFor(x => x.IdentityId)
-            .NotEmpty()
-            .NotNull()
-            .MinimumLength(3);
-
         RuleFor(x => x.Username)
             .NotEmpty()
             .NotNull()

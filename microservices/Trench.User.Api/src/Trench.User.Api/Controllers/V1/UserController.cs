@@ -34,8 +34,9 @@ public class UserController(
     /// Get user by username
     /// </summary>
     /// <returns></returns>
+    [AllowAnonymous]
     [HttpGet("{username}")]
-    public async Task<IResult> GetLoggingUser(string username, CancellationToken cancellationToken)
+    public async Task<IResult> GetUserByUsername(string username, CancellationToken cancellationToken)
     {
         var query = new GetUserByUsernameQuery(
             userContext.UserId(),
