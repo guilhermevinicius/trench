@@ -1,12 +1,13 @@
 using Microsoft.EntityFrameworkCore;
 using Trench.User.Application.Contracts.Repositories;
+using Trench.User.Domain.Aggregates.Follower.Entities;
 using Trench.User.Domain.Aggregates.Users.Dtos;
 using Entity = Trench.User.Domain.Aggregates.Users.Entities;
 
 namespace Trench.User.Persistence.Postgres.Repository;
 
 internal sealed class UserRepository(
-    PostgresDbContext context) 
+    PostgresDbContext context)
     : IUserRepository
 {
     private readonly DbSet<Entity.User> _users = context.Set<Entity.User>();
@@ -43,7 +44,8 @@ internal sealed class UserRepository(
             .FirstOrDefaultAsync(cancellationToken);
     }
 
-    public async Task<GetUserByUsernameDto?> GetByUsername(string identityId, string username, CancellationToken cancellationToken)
+    public async Task<GetUserByUsernameDto?> GetByUsername(string identityId, string username,
+        CancellationToken cancellationToken)
     {
         return await _users
             .AsNoTracking()
@@ -56,7 +58,17 @@ internal sealed class UserRepository(
                 user.Bio,
                 user.IsPublic,
                 user.IdentityId == identityId,
-                false))
+                (from user2 in context.Set<Entity.User>()
+                    join follower in context.Set<Followers>() on user2.Id equals follower.FollowerId
+                    where user2.IdentityId == identityId && follower.FollowingId == user.Id && follower.IsRequired
+                    select follower.Accepted == null
+                ).FirstOrDefault(),
+                (from user2 in context.Set<Entity.User>()
+                    join follower in context.Set<Followers>() on user2.Id equals follower.FollowerId
+                    where user2.IdentityId == identityId && follower.FollowingId == user.Id
+                    select follower.Accepted == true
+                ).FirstOrDefault()
+            ))
             .FirstOrDefaultAsync(cancellationToken);
     }
 

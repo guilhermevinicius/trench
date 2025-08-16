@@ -39,6 +39,7 @@ public class GetUserByUsernameAutoMockerFixture : BaseTest
             Faker.Lorem.Letter(10),
             Faker.Random.Bool(),
             Faker.Random.Bool(),
+            Faker.Random.Bool(),
             Faker.Random.Bool());
     }
 

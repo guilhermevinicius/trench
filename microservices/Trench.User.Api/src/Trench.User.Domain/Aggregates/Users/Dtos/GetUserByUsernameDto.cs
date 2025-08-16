@@ -8,4 +8,5 @@ public sealed record GetUserByUsernameDto(
     string? Bio,
     bool IsPublic,
     bool IsOwner,
-    bool IsAcceptPending);
+    bool IsFollowPending,
+    bool IsFriendShip);
