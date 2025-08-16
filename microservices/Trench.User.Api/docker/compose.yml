@@ -9,6 +9,7 @@ services:
     environment:
       ASPNETCORE_ENVIRONMENT: "Development"
       ConnectionStrings__Postgres: "Host=trench-postgres;Port=5432;Database=trench_user;Username=trench;Password=trench@trench;"
+      ConnectionStrings__Redis: "redis:6379,password=my-secure-password"
       QueueSettings__Host: "amqp://trench-rabbitmq"
       QueueSettings__Username: "guest"
       QueueSettings__Password: "guest"
@@ -25,7 +26,7 @@ services:
       Keycloak__AdminClientSecret: "qXBOhlrNW6KV5bIfRHGuWPaCWRRspxur"
       Keycloak__AuthClientId: "trench-user"
       Keycloak__AuthClientSecret: "G7INeTbBFf6YiCUULJDRrLILrPeoQJPI"
-      Jwt__Issuers: "http://localhost:8080/realms/trench"
+      Jwt__Issuers: "http://trench-keycloak:8080/realms/trench"
       Jwt__Audience: "account"
     networks:
       - trench-network
