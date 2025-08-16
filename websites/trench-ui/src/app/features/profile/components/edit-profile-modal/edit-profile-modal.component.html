@@ -1,0 +1,37 @@
+@if(isOpen) {
+<div class="w-full h-full t-0 left-0 right-0 button-0 bg-[rgba(0,0,0,.48)] fixed flex items-center justify-center">
+  <form [formGroup]="profileForm" (submit)="onSubmitForm()" class="w-[619px] bg-white p-[24px] rounded-2xl">
+    <div class="flex flex-row items-center gap-4">
+      <div class="flex-1 flex flex-col py-2 border-b border-gray-200">
+        <span class="text-black font-semibold">First name</span>
+        <input type="text" formControlName="firstName" class="font-light outline-none">
+      </div>
+      <div class="flex-1 flex flex-col py-2 border-b border-gray-200">
+        <span class="text-black font-semibold">Last name</span>
+        <input type="text" formControlName="lastName" class="font-light outline-none">
+      </div>
+    </div>
+    <div class="flex flex-col py-2 border-b border-gray-200">
+      <span class="text-black font-semibold">Username</span>
+      <input type="text" [value]="user?.username" disabled class="font-light outline-none disabled:text-gray-400">
+    </div>
+    <div class="flex flex-col py-2 border-b border-gray-200">
+      <span class="text-black font-semibold">Bio</span>
+      <input formControlName="bio" class="font-light outline-none" />
+    </div>
+    <div class="flex flex-col py-2 border-b border-gray-200">
+      <span class="text-black font-semibold">Perfil privado</span>
+      <span class="font-light text-gray-400 text-[12px]">
+        Perfis privados só podem responder aos próprios seguidores. Mude seu perfil para público para poder responder a
+        qualquer pessoa.
+      </span>
+    </div>
+    <div class="mt-4">
+      <button type="submit" [disabled]="!profileForm.valid"
+        class="w-full h-[52px] bg-black text-white rounded-xl disabled:bg-[#555]">
+        Concluir
+      </button>
+    </div>
+  </form>
+</div>
+}

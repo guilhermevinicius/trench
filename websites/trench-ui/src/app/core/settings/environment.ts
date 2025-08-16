@@ -15,6 +15,12 @@ export class Environment {
 
   apiBff = '';
 
+  auth = {
+    url: '',
+    realm: '',
+    clientId: ''
+  }
+
   async load() {
     const environmentFileName = 'environment.json';
     try {
@@ -25,7 +31,11 @@ export class Environment {
       this.environment = values.environment;
       this.isProduction = values.isProduction;
       this.sessionChecks = values.sessionChecks;
-
+      this.auth = {
+        url: values.auth.url,
+        realm: values.auth.realm,
+        clientId: values.auth.clientId
+      };
       this.apiBff = values.apiBff;
     } catch (e) {
       console.log(`Could not load "${environmentFileName}"`);
