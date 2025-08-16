@@ -34,7 +34,8 @@ public class GetUserLoggingAutoMockerFixture : BaseTest
         return new GetUserLoggingDto(
             Faker.Person.FirstName,
             Faker.Person.LastName,
-            Faker.Person.UserName);
+            Faker.Person.UserName,
+            Faker.Lorem.Letter(10));
     }
 
     #endregion

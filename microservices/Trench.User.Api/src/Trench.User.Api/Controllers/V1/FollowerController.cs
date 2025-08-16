@@ -2,6 +2,7 @@ using System.Net;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Trench.User.Api.Configurations.Authentication;
+using Trench.User.Api.Controllers.V1.Dtos.Follower;
 using Trench.User.Application.UseCases.Follower.Commands.Follow;
 using Trench.User.Application.UseCases.Follower.Queries.ListFollowerPending;
 
@@ -31,12 +32,16 @@ public class FollowerController(
     /// <summary>
     /// Follow
     /// </summary>
-    /// <param name="command"></param>
+    /// <param name="request"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     [HttpPost]
-    public async Task<IResult> Follow(FollowCommand command, CancellationToken cancellationToken)
+    public async Task<IResult> Follow(FollowerRequest request, CancellationToken cancellationToken)
     {
+        var command = new FollowCommand(
+            userContext.UserIdAsInt(),
+            request.FollowingId);
+
         var result = await sender.Send(command, cancellationToken);
 
         return CustomResponse(result, HttpStatusCode.Created);

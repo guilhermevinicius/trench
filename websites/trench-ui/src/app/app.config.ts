@@ -1,42 +1,32 @@
-import {ApplicationConfig, provideZoneChangeDetection} from '@angular/core';
-import {HTTP_INTERCEPTORS, provideHttpClient, withInterceptors, withInterceptorsFromDi} from '@angular/common/http';
-import {provideRouter} from '@angular/router';
+import { APP_INITIALIZER, ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptors, withInterceptorsFromDi } from '@angular/common/http';
+import { provideRouter } from '@angular/router';
 
-import {routes} from './app.routes';
-import {
-  AutoRefreshTokenService,
-  includeBearerTokenInterceptor,
-  provideKeycloak,
-  UserActivityService
-} from 'keycloak-angular';
-import {TrenchHttpRequestInterceptor} from './core/settings';
+import { routes } from './app.routes';
+import { Environment, TrenchHttpRequestInterceptor } from './core/settings';
+import { AuthenticationService } from './core/auth';
+
+export function initializeApp(
+  environment: Environment,
+  authenticationService: AuthenticationService): () => Promise<void> {
+  return async () => {
+    await environment.load();
+    await authenticationService.init();
+    return await Promise.resolve();
+  }
+}
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideKeycloak({
-      config: {
-        url: 'http://localhost:8080',
-        realm: 'trench',
-        clientId: 'trench-ui',
-      },
-      initOptions: {
-        onLoad: 'check-sso',
-        checkLoginIframe: false,
-        enableLogging: true,
-        silentCheckSsoRedirectUri: window.location.origin + '/silent-check-sso.html',
-        redirectUri: window.location.origin + '/signin'
-      },
-      providers: [
-        AutoRefreshTokenService,
-        UserActivityService
-      ]
-    }),
-    provideZoneChangeDetection({eventCoalescing: true}),
+    provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-    provideHttpClient(
-      withInterceptors([includeBearerTokenInterceptor]),
-      withInterceptorsFromDi()
-    ),
+    provideHttpClient(withInterceptorsFromDi()),
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeApp,
+      deps: [Environment, AuthenticationService],
+      multi: true
+    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TrenchHttpRequestInterceptor,

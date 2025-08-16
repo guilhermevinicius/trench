@@ -54,9 +54,15 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/assets",
+              "src/assets/fonts/sf-pro-display/sf-pro-display.scss",
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              {
+                "glob": "environment.json",
+                "input": "src/environments",
+                "output": "./"
               }
             ],
             "styles": [

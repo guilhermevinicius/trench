@@ -1,3 +1,91 @@
-<p>profile-base works!</p>
+<app-profile-edit-profile-modal [user]="user" [isOpen]="isOpenProfileModal" />
 
-{{ profile?.username }}
+<div class="w-[664px] h-full m-auto">
+  <div class="h-[60px] flex flex-row items-center justify-center">
+    <a [routerLink]="['p', 'guilherme']" class="py-[17px] px-4 text-black">
+      <span>Profile</span>
+    </a>
+  </div>
+
+  <div class="h-full bg-white rounded-2xl border border-gray-200">
+    @if(!isNotFoundUser && user) {
+    <div class="p-6">
+      <div class="flex flex-row items-center">
+        <div class="flex-1 flex flex-col">
+          <span class="text-xl font-semibold"> {{user.firstName}} {{user.lastName}} </span>
+          <span class="font-light"> {{ user.username }} </span>
+        </div>
+        <img src="/logo.png" alt="" class="w-[84px] h-[84px] rounded-full">
+      </div>
+
+      <div>
+        <span>
+          {{user.bio}}
+        </span>
+      </div>
+
+      <div class="mt-4 flex flex-row items-center gap-4">
+        <span class="text-[#999]">30 seguidores</span>
+        <span class="text-[#999]">30 seguindo</span>
+      </div>
+
+      <div class="mt-4 flex flex-row items-center gap-4">
+        @if(user.isOwner) {
+        <button (click)="isOpenProfileModal = true"
+          class="w-full border border-gray-300 p-1.5 rounded-lg font-[500] pointer">
+          Editar perfil
+        </button>
+        }
+        @if(!user.isOwner && !user.isFollowPending && !user.isFriendShip) {
+        <button (click)="sendRequestFollower(user.id)"
+          class="w-full border border-gray-300 p-1.5 rounded-lg font-[500] pointer">
+          Seguir
+        </button>
+        }
+        @if(user.isFollowPending && !user.isFriendShip) {
+        <button [disabled]="user.isFollowPending"
+          class="w-full border border-gray-300 p-1.5 rounded-lg font-[500] pointer">
+          Pendente
+        </button>
+        }
+        @if(user.isFriendShip) {
+        <button [disabled]="user.isFollowPending"
+          class="w-full border border-gray-300 p-1.5 rounded-lg font-[500] pointer">
+          Deixar de seguir
+        </button>
+        }
+      </div>
+    </div>
+    @if(user.isPublic || user.isOwner || user.isFriendShip) {
+    <div class="mt-4 h-[49px] flex flex-row items-center justify-between">
+      <a href="" class="w-full text-center px-[32px] py-[12px] border-b border-black">
+        <span>Threads</span>
+      </a>
+      <a href="" class="w-full text-center px-[32px] py-[12px] border-b border-gray-300 text-gray-400">
+        <span>Respostas</span>
+      </a>
+      <a href="" class="w-full text-center px-[32px] py-[12px] border-b border-gray-300 text-gray-400">
+        <span>Mídia</span>
+      </a>
+      <a href="" class="w-full text-center px-[32px] py-[12px] border-b border-gray-300 text-gray-400">
+        <span>Reposts</span>
+      </a>
+    </div>
+    } @else {
+    <div class="p-6 flex flex-col items-center">
+      <span class="text-xl font-semibold">Essa conta é privada.</span>
+      <span class="font-light">Siga esse usuário para ver suas fotos e vídeos.</span>
+    </div>
+    }
+
+    } @else {
+    <div class="p-6 flex flex-col items-center">
+      <span class="text-xl font-semibold">Esta página não está disponível.</span>
+      <span class="font-light">O usuario que está tentando acessar não está disponivel.</span>
+      <a [routerLink]="['/']" class="bg-black text-white rounded-xl p-2 px-8 mt-8">
+        Voltar
+      </a>
+    </div>
+    }
+  </div>
+</div>
