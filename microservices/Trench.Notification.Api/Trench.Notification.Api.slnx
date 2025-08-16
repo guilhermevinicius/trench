@@ -1,0 +1,23 @@
+<Solution>
+  <Folder Name="/env/">
+    <File Path="Directory.Build.props" />
+    <File Path="docker\compose.yml" />
+    <File Path="docker\Dockerfile" />
+    <File Path="README.MD" />
+    <File Path=".gitignore" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/Trench.Notification.Domain/Trench.Notification.Domain.csproj" />
+    <Project Path="src\Trench.Notification.Api\Trench.Notification.Api.csproj" Type="Classic C#" />
+    <Project Path="src\Trench.Notification.Application\Trench.Notification.Application.csproj" Type="Classic C#" />
+    <Project Path="src\Trench.Notification.CrossCutting\Trench.Notification.CrossCutting.csproj" Type="Classic C#" />
+    <Project Path="src\Trench.Notification.MessageQueue\Trench.Notification.MessageQueue.csproj" Type="Classic C#" />
+    <Project Path="src\Trench.Notification.Persistence\Trench.Notification.Persistence.csproj" Type="Classic C#" />
+  </Folder>
+  <Folder Name="/src/tests/">
+    <Project Path="src\Trench.Notification.ArchitectureTests\Trench.Notification.ArchitectureTests.csproj" Type="Classic C#" />
+    <Project Path="src\Trench.Notification.FunctionalTests\Trench.Notification.FunctionalTests.csproj" Type="Classic C#" />
+    <Project Path="src\Trench.Notification.IntegrationTests\Trench.Notification.IntegrationTests.csproj" Type="Classic C#" />
+    <Project Path="src\Trench.Notification.UnitTests\Trench.Notification.UnitTests.csproj" Type="Classic C#" />
+  </Folder>
+</Solution>

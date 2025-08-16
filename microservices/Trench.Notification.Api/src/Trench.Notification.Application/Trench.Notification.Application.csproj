@@ -1,0 +1,7 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <ItemGroup>
+      <ProjectReference Include="..\Trench.Notification.CrossCutting\Trench.Notification.CrossCutting.csproj" />
+    </ItemGroup>
+
+</Project>

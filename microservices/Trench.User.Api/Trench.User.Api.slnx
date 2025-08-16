@@ -4,6 +4,7 @@
     <File Path="README.MD" />
     <File Path="Directory.Build.props" />
     <File Path="docker\compose.yml" />
+    <File Path=".gitignore" />
   </Folder>
   <Folder Name="/src/">
     <Project Path="src\Trench.User.Api\Trench.User.Api.csproj" Type="Classic C#" />

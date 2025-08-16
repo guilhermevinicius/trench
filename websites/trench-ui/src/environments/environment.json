@@ -3,7 +3,7 @@
   "isProduction": false,
   "environment": "development",
   "sessionChecks": false,
-  "apiBff": "https://localhost:7060/api",
+  "apiBff": "http://localhost:7001/api",
   "auth": {
     "url": "http://localhost:8080",
     "reaml": "trenh",
