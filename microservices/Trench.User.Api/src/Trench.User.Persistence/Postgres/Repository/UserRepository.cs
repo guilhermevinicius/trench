@@ -1,4 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Distributed;
+using Trench.User.Application.Contracts.Caching;
 using Trench.User.Application.Contracts.Repositories;
 using Trench.User.Domain.Aggregates.Follower.Entities;
 using Trench.User.Domain.Aggregates.Users.Dtos;
@@ -7,6 +9,7 @@ using Entity = Trench.User.Domain.Aggregates.Users.Entities;
 namespace Trench.User.Persistence.Postgres.Repository;
 
 internal sealed class UserRepository(
+    ICacheService cache,
     PostgresDbContext context)
     : IUserRepository
 {

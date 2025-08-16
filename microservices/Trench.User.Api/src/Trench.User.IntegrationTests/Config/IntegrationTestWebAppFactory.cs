@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Testcontainers.PostgreSql;
 using Testcontainers.RabbitMq;
+using Testcontainers.Redis;
 using Trench.User.Domain.Aggregates.Follower.Entities;
 using Trench.User.Domain.Integrations;
 using Trench.User.IntegrationTests.Config.Integration;
@@ -28,6 +29,9 @@ public class IntegrationTestWebAppFactory : WebApplicationFactory<Program>, IAsy
     private readonly RabbitMqContainer _rabbitMqContainer = new RabbitMqBuilder()
         .Build();
 
+    private readonly RedisContainer _redisContainer = new RedisBuilder()
+        .Build();
+
     private HttpClient Client { get; set; } = new();
     public ISender Sender { get; private set; }
 
@@ -35,6 +39,7 @@ public class IntegrationTestWebAppFactory : WebApplicationFactory<Program>, IAsy
     {
         await _dbContainer.StartAsync();
         await _rabbitMqContainer.StartAsync();
+        await _redisContainer.StartAsync();
         await InitializeClient();
     }
 
@@ -42,6 +47,7 @@ public class IntegrationTestWebAppFactory : WebApplicationFactory<Program>, IAsy
     {
         await _dbContainer.StopAsync();
         await _rabbitMqContainer.StopAsync();
+        await _redisContainer.StopAsync();
     }
 
     public new void Dispose()

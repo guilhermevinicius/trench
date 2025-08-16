@@ -1,8 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Trench.User.Application.Contracts.Caching;
 using Trench.User.Application.Contracts.Repositories;
 using Trench.User.Domain.SeedWorks;
+using Trench.User.Persistence.Caching;
 using Trench.User.Persistence.Postgres;
 using Trench.User.Persistence.Postgres.Repository;
 
@@ -14,6 +16,7 @@ public static class PersistenceDependencyInjection
         IConfiguration configuration)
     {
         services.ConfigurePostgres(configuration);
+        services.ConfigureCache(configuration);
 
         return services;
     }
@@ -28,5 +31,13 @@ public static class PersistenceDependencyInjection
 
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IFollowerRepository, FollowerRepository>();
+    }
+    
+    private static void ConfigureCache(this IServiceCollection services, IConfiguration configuration)
+    {
+        services.AddStackExchangeRedisCache(options => 
+            options.Configuration = configuration.GetConnectionString("Redis"));
+
+        services.AddSingleton<ICacheService, CacheService>();   
     }
 }
