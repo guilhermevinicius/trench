@@ -1,0 +1,21 @@
+services:
+  trench-notification-api:
+    build:
+      dockerfile: ./docker/Dockerfile
+      context: ..
+    container_name: trench-notification-api
+    ports:
+      - "7002:80"
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      ConnectionStrings__Postgres: "Host=trench-postgres;Port=5432;Database=trench_notification;Username=trench;Password=trench@trench;"
+      ConnectionStrings__Redis: "redis:6379,password=my-secure-password"
+      QueueSettings__Host: "amqp://trench-rabbitmq"
+      QueueSettings__Username: "guest"
+      QueueSettings__Password: "guest"
+      QueueSettings__Port: "5672"
+      QueueSettings__VirtualHost: "/"
+      Jwt__Issuers: "http://trench-keycloak:8080/realms/trench"
+      Jwt__Audience: "account"
+    networks:
+      - trench-network
