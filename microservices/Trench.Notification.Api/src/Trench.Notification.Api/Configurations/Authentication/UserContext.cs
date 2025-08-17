@@ -3,7 +3,7 @@ using System.Security.Claims;
 namespace Trench.Notification.Api.Configurations.Authentication;
 
 public class UserContext(
-    IHttpContextAccessor contextAccessor) 
+    IHttpContextAccessor contextAccessor)
     : IUserContext
 {
     public string UserId()

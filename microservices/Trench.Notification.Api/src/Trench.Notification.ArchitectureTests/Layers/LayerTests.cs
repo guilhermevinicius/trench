@@ -24,7 +24,7 @@ public class LayerTests : BaseTest
             .Should()
             .NotHaveDependencyOn(PersistenceAssembly.GetName().Name)
             .GetResult();
-    
+
         result.IsSuccessful.Should().BeTrue();
     }
 
@@ -35,7 +35,7 @@ public class LayerTests : BaseTest
             .Should()
             .NotHaveDependencyOn(PersistenceAssembly.GetName().Name)
             .GetResult();
-    
+
         result.IsSuccessful.Should().BeTrue();
     }
 }

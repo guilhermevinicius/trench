@@ -1,7 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <ItemGroup>
-      <ProjectReference Include="..\Trench.Notification.CrossCutting\Trench.Notification.CrossCutting.csproj" />
+        <ProjectReference Include="..\Trench.Notification.CrossCutting\Trench.Notification.CrossCutting.csproj"/>
+        <ProjectReference Include="..\Trench.Notification.Domain\Trench.Notification.Domain.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <InternalsVisibleTo Include="Trench.Notification.UnitTests" />
     </ItemGroup>
 
 </Project>

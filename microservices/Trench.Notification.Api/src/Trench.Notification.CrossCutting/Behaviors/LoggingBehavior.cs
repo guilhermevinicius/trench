@@ -25,16 +25,12 @@ public sealed class LoggingBehavior<TRequest, TResponse>(
             var result = await next(cancellationToken);
 
             if (result.IsSuccess)
-            {
                 logger.LogInformation("Request {RequestName} processed successfully", requestName);
-            }
             else
-            {
                 using (LogContext.PushProperty("Error", result.Errors, true))
                 {
                     logger.LogError("Request {RequestName} processed with error", requestName);
                 }
-            }
 
             return result;
         }

@@ -7,7 +7,7 @@ public class CustomExceptionHandler(
     ILogger<CustomExceptionHandler> logger)
     : IExceptionHandler
 {
-    public async ValueTask<bool> TryHandleAsync(HttpContext httpContext, Exception exception, 
+    public async ValueTask<bool> TryHandleAsync(HttpContext httpContext, Exception exception,
         CancellationToken cancellationToken)
     {
         logger.LogError(exception, "Exception occurred: {Message}", exception.Message);
@@ -26,7 +26,7 @@ public class CustomExceptionHandler(
             //     // NotFoundException => "Resource Not Found",
             //     _ => "Internal Server Error"
             // },
-            Detail = exception.Message,
+            Detail = exception.Message
             // Instance = httpContext.Request.Path
         };
 

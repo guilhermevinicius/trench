@@ -27,8 +27,10 @@ internal sealed class CacheService(
         return cache.SetAsync(key, bytes, CacheOptions.Create(expiration), cancellationToken);
     }
 
-    public Task RemoveAsync(string key, CancellationToken cancellationToken = default) =>
-        cache.RemoveAsync(key, cancellationToken);
+    public Task RemoveAsync(string key, CancellationToken cancellationToken = default)
+    {
+        return cache.RemoveAsync(key, cancellationToken);
+    }
 
     private static T Deserialize<T>(byte[] bytes)
     {

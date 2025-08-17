@@ -5,7 +5,7 @@ using Trench.Notification.Application.Contracts.Data;
 namespace Trench.Notification.Persistence.Data;
 
 internal sealed class SqlConnectionFactory(
-    string connectionString) 
+    string connectionString)
     : ISqlConnectionFactory
 {
     public IDbConnection CreateConnection()

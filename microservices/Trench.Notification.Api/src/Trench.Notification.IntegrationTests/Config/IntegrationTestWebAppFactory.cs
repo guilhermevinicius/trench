@@ -4,11 +4,9 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.AspNetCore.TestHost;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.VisualStudio.TestPlatform.TestHost;
 using Testcontainers.PostgreSql;
 using Testcontainers.RabbitMq;
 using Testcontainers.Redis;
-using Trench.Notification.Domain.SeedWorks;
 using Trench.Notification.MessageQueue.Configurations;
 using Trench.Notification.Persistence.Postgres;
 

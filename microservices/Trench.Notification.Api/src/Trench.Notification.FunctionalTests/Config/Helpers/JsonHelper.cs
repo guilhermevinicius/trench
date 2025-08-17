@@ -8,5 +8,5 @@ internal static class JsonHelper
     {
         var responseRequest = await response.Content.ReadAsStringAsync();
         return JsonConvertHelper.DeserializeObject<CustomResponse>(responseRequest);
-    }   
+    }
 }

@@ -65,7 +65,7 @@ public class IntegrationTestWebAppFactory : WebApplicationFactory<Program>, IAsy
                 options.UseNpgsql(_dbContainer.GetConnectionString())
                     .UseSnakeCaseNamingConvention());
 
-            var userContext = services.SingleOrDefault(descriptor => 
+            var userContext = services.SingleOrDefault(descriptor =>
                 descriptor.ServiceType == typeof(UserContext));
 
             services.Remove(userContext!);
@@ -131,5 +131,6 @@ public class IntegrationTestWebAppFactory : WebApplicationFactory<Program>, IAsy
 
         await context.SaveChangesAsync();
     }
+
     #endregion
 }

@@ -1,5 +1,4 @@
 using Grpc.Core;
-using Trench.Notification.Api;
 
 namespace Trench.Notification.Api.Services;
 

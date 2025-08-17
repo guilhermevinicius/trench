@@ -18,3 +18,5 @@ var app = builder.Build();
 
 await app.UseApi()
     .RunAsync();
+    
+public partial class Program;

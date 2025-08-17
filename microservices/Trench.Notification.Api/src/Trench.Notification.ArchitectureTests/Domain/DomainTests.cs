@@ -22,10 +22,7 @@ public class DomainTests : BaseTest
             var constructors = entityType.GetConstructors(BindingFlags.NonPublic |
                                                           BindingFlags.Instance);
 
-            if (!constructors.Any(c => c.IsPrivate && c.GetParameters().Length == 0))
-            {
-                failingTypes.Add(entityType);
-            }
+            if (!constructors.Any(c => c.IsPrivate && c.GetParameters().Length == 0)) failingTypes.Add(entityType);
         }
 
         failingTypes.Should().BeEmpty();

@@ -10,7 +10,7 @@ internal static class HealthCheckConfig
     {
         services.AddHealthChecks()
             .AddNpgSql(configuration.GetConnectionString("Postgres")!, name: "Postgres")
-            .AddRedis(configuration.GetConnectionString("Redis")!, name: "Redis");
+            .AddRedis(configuration.GetConnectionString("Redis")!, "Redis");
 
         services.AddHealthChecksUI(setup => { setup.SetEvaluationTimeInSeconds(50); })
             .AddInMemoryStorage();

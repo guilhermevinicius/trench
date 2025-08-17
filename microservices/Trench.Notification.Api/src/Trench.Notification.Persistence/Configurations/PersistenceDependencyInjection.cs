@@ -3,10 +3,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Trench.Notification.Application.Contracts.Caching;
 using Trench.Notification.Application.Contracts.Data;
+using Trench.Notification.Application.Contracts.Repositories;
 using Trench.Notification.Domain.SeedWorks;
 using Trench.Notification.Persistence.Caching;
 using Trench.Notification.Persistence.Data;
 using Trench.Notification.Persistence.Postgres;
+using Trench.Notification.Persistence.Postgres.Repository;
 
 namespace Trench.Notification.Persistence.Configurations;
 
@@ -24,7 +26,8 @@ public static class PersistenceDependencyInjection
     private static void ConfigurePostgres(this IServiceCollection services, IConfiguration configuration)
     {
         var connectionString = configuration.GetConnectionString("Postgres")
-            ?? throw new ArgumentNullException(nameof(configuration));;
+                               ?? throw new ArgumentNullException(nameof(configuration));
+        ;
 
         services.AddDbContextPool<PostgresDbContext>(opt =>
             opt.UseNpgsql(connectionString)
@@ -34,13 +37,14 @@ public static class PersistenceDependencyInjection
             new SqlConnectionFactory(connectionString));
 
         services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<PostgresDbContext>());
+        services.AddScoped<INotificationRepository, NotificationRepository>();
     }
 
     private static void ConfigureCache(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddStackExchangeRedisCache(options => 
+        services.AddStackExchangeRedisCache(options =>
             options.Configuration = configuration.GetConnectionString("Redis"));
 
-        services.AddSingleton<ICacheService, CacheService>();   
+        services.AddSingleton<ICacheService, CacheService>();
     }
 }
