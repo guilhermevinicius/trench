@@ -7,7 +7,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Trench.Notification.Domain\Trench.Notification.Domain.csproj" />
+      <ProjectReference Include="..\Trench.Notification.Application\Trench.Notification.Application.csproj" />
     </ItemGroup>
 
 </Project>
