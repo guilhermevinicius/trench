@@ -99,7 +99,10 @@ internal sealed class UserRepository(
                 )).FirstOrDefaultAsync(cancellationToken);
 
             if (userDto is not null)
+            {
                 await cache.SetAsync($"user:{username}", userDto, null, cancellationToken);
+                await cache.SetAsync($"user_id:{userDto.Id}", username, null, cancellationToken);
+            }
         }
 
         userDto?.SetIsOwner(identityId);
