@@ -23,4 +23,7 @@
             PublicKeyToken=b77a5c561934e089
         </value>
     </resheader>
+    <data name="FollowRequest" xml:space="preserve">
+        <value>Asked to follow</value>
+    </data>
 </root>

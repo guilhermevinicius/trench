@@ -7,8 +7,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Testcontainers.PostgreSql;
 using Testcontainers.RabbitMq;
 using Testcontainers.Redis;
+using Trench.Notification.Domain.Aggregates.Notification.Enums;
 using Trench.Notification.MessageQueue.Configurations;
 using Trench.Notification.Persistence.Postgres;
+using Entity = Trench.Notification.Domain.Aggregates.Notification.Entities;
 
 namespace Trench.Notification.IntegrationTests.Config;
 
@@ -112,8 +114,20 @@ public class IntegrationTestWebAppFactory : WebApplicationFactory<Program>, IAsy
 
         await context.Database.EnsureCreatedAsync();
 
+        await PopulateNotification(context);
+
         await context.SaveChangesAsync();
     }
 
+    private async Task PopulateNotification(PostgresDbContext context)
+    {
+        var notification = Entity.Notification.Create(
+            NotificationType.FollowRequest,
+            1,
+            1);
+
+        await context.AddAsync(notification, CancellationToken.None);
+    }
+    
     #endregion
 }

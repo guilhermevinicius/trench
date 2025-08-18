@@ -1,6 +1,7 @@
 using Scalar.AspNetCore;
 using Serilog;
 using Trench.Notification.Api.Configurations.Authentication;
+using Trench.Notification.Api.Configurations.Cultures;
 using Trench.Notification.Api.Configurations.ExceptionHandler;
 using Trench.Notification.Api.Configurations.HealthCheck;
 using Trench.Notification.Api.Configurations.Observability;
@@ -33,6 +34,8 @@ internal static class ApiDependencyInjection
 
         services.AddProblemDetails();
 
+        services.AddLocalizationIStringLocalizer();
+        
         return services;
     }
 
@@ -56,6 +59,8 @@ internal static class ApiDependencyInjection
         app.UseSerilogRequestLogging();
 
         app.ApplyMigrations();
+
+        app.UseSupportedCultures(app.Configuration);
 
         if (app.Environment.IsEnvironment("Test"))
             app.MapControllers().AllowAnonymous();
